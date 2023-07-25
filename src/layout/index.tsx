@@ -4,9 +4,11 @@ import styled from "styled-components";
 import bg from "assets/bg/bg-main.jpg";
 import MainHeader from "./MainHeader";
 import MainFooter from "./MainFooter";
+import useContentResizer from "hooks/useContentResizer";
 const Layout = () => {
+  const height = useContentResizer()
   return (
-    <LayoutStyle bg={bg}>
+    <LayoutStyle bg={bg} height={height}>
       <div className="main-page">
         <MainHeader />
         <div className="farm">
@@ -22,10 +24,11 @@ export default Layout;
 
 const LayoutStyle: any = styled.div`
   width: 100%;
-  height: 100vh;
+  height: ${(props: any) => props.height}px;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
   .main-page {
     max-width: 478px;
     width: 100%;

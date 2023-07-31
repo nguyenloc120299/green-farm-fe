@@ -1,0 +1,6 @@
+{
+  "appId": "com.greenfarm.app",
+  "appName": "Green Farm",
+  "webDir": "build",
+  "bundledWebRuntime": false
+}

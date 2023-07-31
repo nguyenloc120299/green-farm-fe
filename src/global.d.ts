@@ -16,7 +16,8 @@ declare global {
   }
 }
 export interface PropsType {
-  children?: React.ReactElement;
+  children?: React.ReactNode;
   column?: number;
   row?: number;
+  onClick?:()=>void;
 }

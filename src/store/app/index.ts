@@ -1,21 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
-
-
-const initialState = {
-
-  socket: null,
+export interface TYPE_STATE {
+  loading: {
+    [type: string]: string;
+  } | null;
 }
 
+const initialState: TYPE_STATE = {
+  loading: null,
+};
+
 const appSlice = createSlice({
-  name: 'app',
+  name: "app",
   initialState,
   reducers: {
-    
+    setLoading: (state, action) => {
+      state.loading = action.payload;
+    },
   },
-})
+});
 
-export const {
-} = appSlice.actions
+export const { setLoading } = appSlice.actions;
 
-export default appSlice.reducer
+export default appSlice.reducer;

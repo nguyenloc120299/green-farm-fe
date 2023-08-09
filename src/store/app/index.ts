@@ -4,10 +4,14 @@ export interface TYPE_STATE {
   loading: {
     [type: string]: string;
   } | null;
+  isOpen: {
+    [type: string]: string;
+  } | null;
 }
 
 const initialState: TYPE_STATE = {
   loading: null,
+  isOpen: {},
 };
 
 const appSlice = createSlice({
@@ -17,9 +21,15 @@ const appSlice = createSlice({
     setLoading: (state, action) => {
       state.loading = action.payload;
     },
+    setOpen: (state, action) => {
+      state.isOpen = {
+        ...state.isOpen,
+        [action.payload.type]: action.payload.value,
+      };
+    },
   },
 });
 
-export const { setLoading } = appSlice.actions;
+export const { setLoading, setOpen } = appSlice.actions;
 
 export default appSlice.reducer;

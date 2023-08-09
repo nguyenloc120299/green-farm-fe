@@ -2,14 +2,14 @@ import React from "react";
 import landImg from "assets/farm/farm-area.png";
 import styled from "styled-components";
 import { PropsType } from "global";
-import useToggle from "hooks/useToggle";
-import { Popover } from "antd";
+
 
 const Land = ({ column, row,children,onClick }: PropsType) => {
 
   return (
     <LandStyle
       style={{ gridColumn: column, gridRow: row }}
+      onClick={onClick}
     >
       <img src={landImg} alt="Land" />
       {children}

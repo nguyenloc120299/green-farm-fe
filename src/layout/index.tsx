@@ -5,11 +5,20 @@ import bg from "assets/bg/bg-main.jpg";
 import MainHeader from "./MainHeader";
 import MainFooter from "./MainFooter";
 import useContentResizer from "hooks/useContentResizer";
+import SeedsBox from "components/ui/SeedsBox";
+import { useOpen } from "hooks/useOpen";
+import { IS_OPEN } from "contants";
+import Modals from "components/modal";
 const Layout = () => {
-  const height = useContentResizer()
+  const height = useContentResizer();
+  const isOpen = useOpen(IS_OPEN.SEEDS);
+
+
   return (
     <LayoutStyle bg={bg} height={height}>
+      <Modals/>
       <div className="main-page">
+        {isOpen && <SeedsBox />}
         <MainHeader />
         <div className="farm">
           <Outlet />
@@ -48,7 +57,6 @@ const LayoutStyle: any = styled.div`
       grid-auto-rows: 1fr;
       height: 100%;
       overflow-y: clip;
-  
     }
   }
 `;

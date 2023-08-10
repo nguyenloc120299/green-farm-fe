@@ -31,7 +31,15 @@ const MainFooter = () => {
             <div className="text">Nhiệm vụ</div>
           </div>
         </div>
-        <div className="box">
+        <div
+          className="box"
+          onClick={() =>
+            onOpen({
+              type: IS_OPEN.REFERRAL,
+              value: true,
+            })
+          }
+        >
           <div>
             <img src={man} />
             <div className="text">Mời bạn bè</div>

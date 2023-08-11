@@ -11,7 +11,15 @@ const MainFooter = () => {
   return (
     <MainFooterStyle>
       <div className="footer">
-        <div className="box">
+        <div
+          className="box"
+          onClick={() =>
+            onOpen({
+              type: IS_OPEN.GAMES,
+              value: true,
+            })
+          }
+        >
           <div>
             <img src={minigame} />
             <div className="text">Khu trò chơi</div>

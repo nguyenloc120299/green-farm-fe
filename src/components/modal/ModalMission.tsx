@@ -76,17 +76,35 @@ const BodyStyled = styled.div`
         justify-content: space-between;
         align-items: center;
         .ant-btn {
-          background: #078c33;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          max-width: 100px;
           border-radius: 30px;
-          color: #fff;
+          color: #ffc000;
+          text-shadow: 0 1px 3px #000;
+          text-align: center;
+          background: radial-gradient(circle, #078c33, #078c33);
+          border-top: 4px ridge #ffb000;
+          border-left: 4px groove #ffb000;
+          border-right: 4px ridge #ffb000;
+          border-bottom: 4px groove #ffb000;
+          box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
           &:focus {
-            border: unset;
-            box-shadow: unset;
+            border-top: 4px ridge #ffb000;
+            border-left: 4px groove #ffb000;
+            border-right: 4px ridge #ffb000;
+            border-bottom: 4px groove #ffb000;
+            box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
+          }
+          &:active {
+            border-top: 4px ridge #ffb000;
+            border-left: 4px groove #ffb000;
+            border-right: 4px ridge #ffb000;
+            border-bottom: 4px groove #ffb000;
+            box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
           }
         }
-        /* &:hover {
-            background-color: #f3ce3a;
-          } */
         .logo {
           width: 40px;
           height: 40px;

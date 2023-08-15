@@ -3,4 +3,5 @@ export const IS_OPEN = {
   MISSION:"MISSION",
   REFERRAL:"REFERRAL",
   GAMES:"GAMES",
+  PROFILE:"PROFILE"
 };

@@ -29,7 +29,7 @@ const ModalGames = () => {
             </div>
             <div className="des-games">Tham gia mua vé sổ xố thần tài</div>
             <div className="play-game">
-              <Button>Chơi ngay</Button>
+              <Button>Chơi </Button>
             </div>
           </div>
           <div className="item">
@@ -38,7 +38,7 @@ const ModalGames = () => {
             </div>
             <div className="des-games">Tham gia vòng xoay may mắn</div>
             <div className="play-game">
-              <Button>Chơi ngay</Button>
+              <Button>Chơi</Button>
             </div>
           </div>
           <div className="item">
@@ -49,7 +49,7 @@ const ModalGames = () => {
               Tham gia cuộc đua của những loài thú
             </div>
             <div className="play-game">
-              <Button>Chơi ngay</Button>
+              <Button>Chơi </Button>
             </div>
           </div>
         </div>
@@ -94,18 +94,33 @@ const BodyStyled = styled.div`
 
         .play-game {
           .ant-btn {
-            background: #078c33;
-            border-radius: 30px;
-            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             max-width: 100px;
-            width: 100%;
+            border-radius: 30px;
+            color: #ffc000;
+            text-shadow: 0 1px 3px #000;
+            text-align: center;
+            background: radial-gradient(circle, #078c33, #078c33);
+            border-top: 4px ridge #ffb000;
+            border-left: 4px groove #ffb000;
+            border-right: 4px ridge #ffb000;
+            border-bottom: 4px groove #ffb000;
+            box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
             &:focus {
-              border: unset;
-              box-shadow: unset;
+              border-top: 4px ridge #ffb000;
+              border-left: 4px groove #ffb000;
+              border-right: 4px ridge #ffb000;
+              border-bottom: 4px groove #ffb000;
+              box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
             }
-            &:active{
-              border: unset;
-              box-shadow: unset;
+            &:active {
+              border-top: 4px ridge #ffb000;
+              border-left: 4px groove #ffb000;
+              border-right: 4px ridge #ffb000;
+              border-bottom: 4px groove #ffb000;
+              box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
             }
           }
         }

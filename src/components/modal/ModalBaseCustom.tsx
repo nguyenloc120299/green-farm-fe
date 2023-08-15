@@ -1,14 +1,15 @@
 import { Button, Modal, Progress } from "antd";
-import { IS_OPEN } from "contants";
-import { useFnOpen, useOpen } from "hooks/useOpen";
+// import { IS_OPEN } from "contants";
+// import { useFnOpen, useOpen } from "hooks/useOpen";
 import { ReactNode } from "react";
 import styled from "styled-components";
+
 interface Type_Props {
   isModalOpen: boolean;
   onOpen?: () => void;
-  onCancel: () => void;
+onCancel: () => void;
   children?: ReactNode;
-  titleHeader:string
+  titleHeader: string;
 }
 
 const ModalBase = ({
@@ -23,7 +24,7 @@ const ModalBase = ({
       open={isModalOpen}
       onCancel={onCancel}
       footer={null}
-      width={350}
+      width={375}
     >
       <div className="header">{titleHeader}</div>
       {children}
@@ -67,6 +68,5 @@ const ModalMissionStyled = styled(Modal)`
       font-size: 16px;
       font-weight: 700;
     }
-  
   }
 `;

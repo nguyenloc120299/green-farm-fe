@@ -105,7 +105,7 @@ const BodyStyled = styled.div`
           .name-mission {
             text-align: center;
             font-size: 14px;
-            font-weight: 700;
+            font-weight: 500;
           }
           .ant-progress-bg {
             background: #dfb615;

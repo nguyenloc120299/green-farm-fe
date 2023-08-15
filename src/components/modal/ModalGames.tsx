@@ -46,7 +46,7 @@ const ModalGames = () => {
               <img src={trophy} alt="loteryIcon" />
             </div>
             <div className="des-games">
-              Tham gia cuộc đua của những chú ốc sên
+              Tham gia cuộc đua của những loài thú
             </div>
             <div className="play-game">
               <Button>Chơi ngay</Button>
@@ -77,8 +77,7 @@ const BodyStyled = styled.div`
         justify-content: space-between;
         align-items: center;
         .logo {
-          width: 40px;
-    
+          width: 32px;
           margin-right: 10px;
           img {
             width: 100%;
@@ -90,6 +89,7 @@ const BodyStyled = styled.div`
           text-align: left;
           font-size: 14px;
           font-weight: 500;
+          max-width: 150px;
         }
 
         .play-game {
@@ -97,7 +97,13 @@ const BodyStyled = styled.div`
             background: #078c33;
             border-radius: 30px;
             color: #fff;
+            max-width: 100px;
+            width: 100%;
             &:focus {
+              border: unset;
+              box-shadow: unset;
+            }
+            &:active{
               border: unset;
               box-shadow: unset;
             }

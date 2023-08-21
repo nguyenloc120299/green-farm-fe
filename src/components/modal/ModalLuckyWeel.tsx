@@ -71,7 +71,8 @@ const ModalLuckyWeelStyled = styled(Modal)`
   .ant-modal-content {
     width: 100%;
     height: 100%;
-    background-color: #c5a275;
+      background-color: transparent;
     padding: 50px 20px;
+    box-shadow: none;
   }
 `;

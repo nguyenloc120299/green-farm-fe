@@ -43,7 +43,7 @@ const WheelComponent = ({
   const downTime = segments.length * downDuration;
   let spinStart = 0;
   let frames = 0;
-  const centerX = 150;
+  const centerX = 165;
   const centerY = 150;
   useEffect(() => {
     wheelInit();
@@ -178,7 +178,6 @@ const WheelComponent = ({
     ctx.arc(centerX, centerY, 30, 0, PI2, false);
     ctx.closePath();
     ctx.fillStyle = primaryColor;
-    // ctx.lineWidth = 10;
 
     ctx.strokeStyle = contrastColor;
     ctx.fill();
@@ -187,12 +186,6 @@ const WheelComponent = ({
     ctx.textAlign = "center";
     ctx.fillText(buttonText, centerX, centerY + 3);
     ctx.stroke();
-
-    // // Draw outer circle
-    // ctx.beginPath();
-    // ctx.arc(centerX, centerY, size, 0, PI2, false);
-    // ctx.closePath();
-
     ctx.lineWidth = 5;
     ctx.strokeStyle = contrastColor;
     ctx.stroke();
@@ -200,28 +193,12 @@ const WheelComponent = ({
 
   const drawNeedle = () => {
     const ctx = canvasContext;
-    // ctx.lineWidth = 1;
-    // ctx.strokeStyle = primaryColor;
-    // ctx.fileStyle = primaryColor;
     ctx.beginPath();
     ctx.moveTo(centerX + 10, centerY - 29);
     ctx.lineTo(centerX - 10, centerY - 29);
     ctx.lineTo(centerX, centerY - 40);
     ctx.closePath();
     ctx.fill();
-    // const change = angleCurrent + Math.PI / 2;
-    // let i =
-    //   segments.length -
-    //   Math.floor((change / (Math.PI * 2)) * segments.length) -
-    //   1;
-    // const canvasWeel = document.getElementById("wheel");
-    // ctx.textBaseline = "middle";
-    // ctx.fillStyle = primaryColor;
-    // ctx.font = "bold 1em " + fontFamily;
-    // currentSegment = segments[i];
-
-    // isStarted &&
-    //   ctx.fillText(currentSegment, centerX + 10, centerY + size + 50);
   };
   const clear = () => {
     const ctx = canvasContext;
@@ -247,7 +224,7 @@ const WeelStyled = styled.div`
     text-align: center;
     font-size: 18px;
     font-weight: 700;
-    max-width: 200px;
+    max-width: 250px;
     width: 100%;
     margin: auto;
     height: 70px;
@@ -256,7 +233,7 @@ const WeelStyled = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: -40px;
+    margin-bottom: -35px;
     z-index: 99;
     position: relative;
   }

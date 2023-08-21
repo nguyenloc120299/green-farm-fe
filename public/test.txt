@@ -1,0 +1,234 @@
+import { Inject, Injectable, CACHE_MANAGER } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { ethers } from 'ethers';
+import { decrypt } from 'src/utils/crypto';
+import PoolsWalletMissionABI from '.././mission/data/PoolsWalletMissionABI.json';
+
+import {
+  DESCRIPTION_CLAIM,
+  MissionStatus,
+  MissionStatusDocument,
+  MISSION_TYPE,
+} from './schema/mission.status.schema';
+import {
+  MissionRewardLog,
+  MissionRewardLogDocument,
+} from './schema/missionRewardLog.schema';
+
+import { CustomRequestException } from 'src/utils/exception';
+import {
+  ConfigName,
+  CustomConfigDocument,
+} from '../config/schema/custom-config.schema';
+import moment from 'moment';
+
+
+let FLAT_CLAIMING = {}
+
+@Injectable()
+export class MissionService {
+  constructor(
+    @InjectModel(MissionStatus.name)
+    private missionStatusModel: Model<MissionStatusDocument>,
+
+    @InjectModel(MissionStatus.name)
+    private configModel: Model<CustomConfigDocument>,
+
+    @InjectModel(MissionRewardLog.name)
+    private missionRewardLogModel: Model<MissionRewardLogDocument>,
+    @Inject(CACHE_MANAGER) private cacheService: any,
+  ) {}
+
+  private getEthersCore() {
+    const provider = new ethers.JsonRpcProvider(process.env.POOLS_CHAIN_RPC);
+
+    const wallet = new ethers.Wallet(
+      decrypt({
+        iv: process.env.PHARSE_1_MISSION,
+        content: process.env.PHARSE_2_MISSION,
+      }),
+      provider,
+    );
+
+    const missionContract = new ethers.Contract(
+      process.env.POOLS_MISSION_CONTRACT,
+      PoolsWalletMissionABI,
+      wallet,
+    );
+
+    return {
+      provider,
+      wallet,
+      missionContract,
+      missionContractAddress: process.env.POOLS_MISSION_CONTRACT,
+    };
+  }
+
+  async getMissionStatus(deviceId) {
+    const missionSingle = await this.missionStatusModel.findOne({
+      deviceId,
+      missionType: MISSION_TYPE.DOWNLOAD_FRIENDIFY_APP,
+      isVerify: true,
+    });
+
+    if (!missionSingle)
+      return {
+        status: false,
+      };
+
+    return {
+      status: true,
+      missionSingle,
+    };
+  }
+
+  async verifyMission(data: {
+    walletAddress: string;
+    deviceId: string;
+    isVerify: boolean;
+    missionType: MISSION_TYPE;
+    ip: string;
+  }) {
+    const checkIfIpAvailable = await this.missionStatusModel.count({
+      ip: data.ip,
+    });
+
+    if (checkIfIpAvailable >= 3)
+      throw new CustomRequestException({
+        message:
+          'Repeated instances of inappropriate activity detected. Your IP has been blocked.',
+      });
+
+    const missionSingle = await this.missionStatusModel.findOne({
+      deviceId: data.deviceId,
+      missionType: data.missionType,
+    });
+
+    if (missionSingle && !data.isVerify) {
+      missionSingle.isVerify = data.isVerify;
+      await missionSingle.save();
+      return true;
+    } else if (!missionSingle && data.isVerify) {
+      await this.missionStatusModel.create({
+        walletAddress: data.walletAddress,
+        deviceId: data.deviceId,
+        missionType: data.missionType,
+        isVerify: data.isVerify,
+        ip: data.ip,
+      });
+
+      return true;
+    }
+    return false;
+  }
+
+  async claimPoolMission(data: {
+    deviceId: string;
+    walletReceive: string;
+    walletAddress: string;
+  }) {
+    if (FLAT_CLAIMING[data.walletAddress]) {
+      // throw error stuck
+    }
+    
+    // Turn on
+    FLAT_CLAIMING[data.walletAddress] = true
+
+    const missionEndTime = await this.configModel.findOne({
+      name: ConfigName.TIME_END_MISSION,
+    });
+
+    if (!missionEndTime || moment().valueOf() > +missionEndTime?.value) {
+      // Turn off
+      FLAT_CLAIMING[data.walletAddress] = false
+      throw new CustomRequestException({
+        message: 'Event time has ended',
+      });
+    }
+
+    const missionSingle = await this.missionStatusModel.findOne({
+      deviceId: data.deviceId,
+      walletAddress: data.walletAddress,
+      isVerify: true,
+      missionType: MISSION_TYPE.DOWNLOAD_FRIENDIFY_APP,
+      isClaimed: false,
+    });
+
+    // update to pending
+    if (!missionSingle) {
+      // Turn off
+      FLAT_CLAIMING[data.walletAddress] = false
+
+      throw new CustomRequestException({
+        message:
+          'You have received the reward or have not satisfied the requirements to receive the reward',
+      });
+    }
+
+    try {
+      const nonce = await this.estimateNonce();
+
+      const { missionContract } = this.getEthersCore();
+
+      const tx = await missionContract.sendReward(data.walletReceive, {
+        nonce,
+      });
+
+      const transactionReceipt = await tx.wait();
+
+      if (transactionReceipt && transactionReceipt.hash) {
+        this.missionRewardLogModel.create({
+          walletAddress: missionSingle.walletAddress,
+          walletReceive: data.walletReceive,
+          deviceId: data.deviceId,
+          amount: 1,
+          description: DESCRIPTION_CLAIM.CLAIMREWARD_MISSION_DOWNLOADAPP,
+          txHash: transactionReceipt.hash,
+        });
+
+        missionSingle.isClaimed = true;
+
+        await missionSingle.save();
+        // Turn off
+        FLAT_CLAIMING[data.walletAddress] = false
+
+        return {
+          status: true,
+          message: 'Claim success',
+        };
+      }
+    } catch (error) {
+      // Turn off
+      FLAT_CLAIMING[data.walletAddress] = false
+
+      throw new CustomRequestException({
+        message:
+          'Pools network is overloaded, please try again or comeback later.',
+      });
+    }
+    // Turn off
+    FLAT_CLAIMING[data.walletAddress] = false
+
+    return {
+      status: false,
+      message: 'Claim fail',
+    };
+  }
+
+  private async estimateNonce() {
+    let nonceFromCache: {
+      transactionNonce: number;
+    } = await this.cacheService.store.get('transactionNonce');
+
+    if (nonceFromCache?.transactionNonce) {
+      await this.cacheService.store.set('transactionNonce', {
+        transactionNonce: nonceFromCache.transactionNonce + 1,
+      });
+
+      return nonceFromCache.transactionNonce;
+    }
+
+    return nonceFromCache?.transactionNonce || 0;
+  }
+}

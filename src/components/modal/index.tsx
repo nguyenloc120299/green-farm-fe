@@ -3,6 +3,8 @@ import ModalGames from "./ModalGames";
 import ModalMission from "./ModalMission";
 import ModalProfile from "./ModalProfile";
 import ModalReferral from "./ModalReferral";
+import ModalWithDraw from "./ModalWithDraw";
+import ModalLuckyWeel from "./ModalLuckyWeel";
 
 const Modals = () => {
   return(
@@ -11,6 +13,8 @@ const Modals = () => {
         <ModalReferral/>
         <ModalGames/>
         <ModalProfile/>
+        <ModalWithDraw/>
+        <ModalLuckyWeel/>
     </>
   )
 };

@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import avt from "assets/carrots.png";
 import money from "assets/image/money.png";
 import dollar from "assets/image/dollar.png";
 import plus from "assets/image/plus.png";
 import { useFnOpen } from "hooks/useOpen";
 import { IS_OPEN } from "contants";
+import Avatar from "components/elements/Avatar";
 const MainHeader = () => {
   const { onOpen } = useFnOpen();
   return (
@@ -13,17 +13,12 @@ const MainHeader = () => {
       <div className="header">
         <div className="left">
           <div>
-            <div
-              className="avt"
-              onClick={() =>
-                onOpen({
-                  type: IS_OPEN.PROFILE,
-                  value: true,
-                })
-              }
-            >
-              <img src={avt} alt="" />
-            </div>
+            <Avatar
+            onHandle={()=>onOpen({
+              type:IS_OPEN.PROFILE,
+              value:true
+            })}
+            />
           </div>
           <div className="money">
             8k
@@ -65,18 +60,6 @@ const MainHeaderStyle = styled.div`
       display: flex;
       gap: 15px;
       align-items: center;
-      .avt {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background: #aed635;
-        padding: 5px;
-        border: 3px solid #fff;
-        img {
-          width: 100%;
-          height: 100%;
-        }
-      }
       .money {
         width: 120px;
         height: 30px;

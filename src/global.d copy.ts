@@ -1,6 +1,6 @@
 import * as React from "react";
 
-declare module 'react-wheel-of-prizes'
+
 
 declare global {
   namespace JSX {

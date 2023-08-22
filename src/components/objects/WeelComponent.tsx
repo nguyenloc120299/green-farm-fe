@@ -152,7 +152,7 @@ const WheelComponent = ({
     ctx.translate(centerX, centerY);
     ctx.rotate((lastAngle + angle) / 2);
     ctx.fillStyle = contrastColor;
-    ctx.font = "30px Arial";
+    ctx.font = "30px Montserrat";
     ctx.fillText(value.substr(0, 21), size / 2 + 30, 0);
     ctx.restore();
   };
@@ -214,6 +214,28 @@ const WheelComponent = ({
           pointerEvents: isFinished && isOnlyOnce ? "none" : "auto",
         }}
       />
+      <div className="options">
+        <div>
+          <div className="quantity">0</div>
+          <Button>🍊</Button>
+        </div>
+        <div>
+          <div className="quantity">10</div>
+          <Button>🍏</Button>
+        </div>
+        <div>
+          <div className="quantity">10</div>
+          <Button>🍈</Button>
+        </div>
+        <div>
+          <div className="quantity">0</div>
+          <Button>🎰</Button>
+        </div>
+        <div>
+          <div className="quantity">0</div>
+          <Button>🔔</Button>
+        </div>
+      </div>
     </WeelStyled>
   );
 };
@@ -221,26 +243,46 @@ export default WheelComponent;
 const WeelStyled = styled.div`
   position: relative;
   .text-title {
-    text-align: center;
-    font-size: 18px;
-    font-weight: 700;
-    max-width: 250px;
-    width: 100%;
-    margin: auto;
-    height: 70px;
-    background: #ccc;
-    border-radius: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: -35px;
-    z-index: 99;
-    position: relative;
+    max-width: 250px;
+    width: 100%;
+    font-weight: 700;
+    margin: auto;
+    height: 40px;
+    border-radius: 30px;
+    color: #ffc000;
+    text-shadow: 0 1px 3px #000;
+    text-align: center;
+    background: radial-gradient(circle, #078c33, #078c33);
+    border-top: 4px ridge #ffb000;
+    border-left: 4px groove #ffb000;
+    border-right: 4px ridge #ffb000;
+    border-bottom: 4px groove #ffb000;
+    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
   }
-  .option {
+  .options {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     margin-bottom: 5px;
+    .quantity {
+      font-weight: 700;
+      text-align: center;
+      font-size: 16px;
+      color: #e5cf80;
+      text-shadow: 0 0 10px #000;
+    }
+    .ant-btn {
+      span {
+        font-size: 16px;
+        text-shadow: 0 0 2px #000;
+      }
+      &:focus {
+        border: unset;
+        box-shadow: unset;
+      }
+    }
   }
 `;

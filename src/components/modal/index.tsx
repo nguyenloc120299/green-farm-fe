@@ -5,18 +5,20 @@ import ModalProfile from "./ModalProfile";
 import ModalReferral from "./ModalReferral";
 import ModalWithDraw from "./ModalWithDraw";
 import ModalLuckyWeel from "./ModalLuckyWeel";
+import ModalLotery from "./ModalLotery";
 
 const Modals = () => {
-  return(
+  return (
     <>
-        <ModalMission/>
-        <ModalReferral/>
-        <ModalGames/>
-        <ModalProfile/>
-        <ModalWithDraw/>
-        <ModalLuckyWeel/>
+      <ModalMission />
+      <ModalReferral />
+      <ModalGames />
+      <ModalProfile />
+      <ModalWithDraw />
+      <ModalLuckyWeel />
+      <ModalLotery />
     </>
-  )
+  );
 };
 
 export default Modals;

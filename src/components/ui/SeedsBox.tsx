@@ -54,13 +54,23 @@ const SeedBoxStyles = styled.div`
       justify-content: center;
       margin-right: 5px;
       position: relative;
- 
+      cursor: pointer;
       .quantity {
         position: absolute;
-        right: 3px;
-        top: -3px;
-        font-size: 14px;
+        right: -4px;
+        top: -6px;
+        font-size: 10px;
         font-weight: 700;
+        background: #fff;
+        border-radius: 7px;
+        min-width: 25px;
+        z-index: 99;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 700;
+        color: #9e7741;
       }
     }
   }

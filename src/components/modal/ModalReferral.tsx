@@ -13,6 +13,7 @@ const ModalReferral = () => {
     <ModalReferralStyled
       centered
       open={isModalOpen}
+      width={350}
       onCancel={() =>
         onOpen({
           type: IS_OPEN.REFERRAL,
@@ -65,17 +66,12 @@ const ModalReferral = () => {
 export default ModalReferral;
 
 const ModalReferralStyled = styled(Modal)`
-  width: 100%;
-  min-height: 100vh;
-  max-width: 100%;
-  display: flex;
-  align-items: center;
   .ant-modal-close {
     top: 5px;
     right: 5px;
     width: 30px;
     height: 30px;
-    border-radius:50%;
+    border-radius: 50%;
     background: #fff;
     span {
       font-size: 14px;
@@ -87,8 +83,10 @@ const ModalReferralStyled = styled(Modal)`
     width: 100%;
     height: 100%;
     border-radius: 0;
-    background-color: #078c33;
-    padding: 0;
+    background-color: transparent;
+    box-shadow: unset;
+    border-radius: 20px;
+    padding: 10px;
     .header {
       img {
         width: 100%;
@@ -98,7 +96,7 @@ const ModalReferralStyled = styled(Modal)`
     .body {
       display: flex;
       flex-direction: column;
-      padding: 10px 15px;
+
       .text1 {
         font-size: 16px;
         font-weight: 500;

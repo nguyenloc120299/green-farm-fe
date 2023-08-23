@@ -7,7 +7,7 @@ import styled from "styled-components";
 interface Type_Props {
   isModalOpen: boolean;
   onOpen?: () => void;
-onCancel: () => void;
+  onCancel: () => void;
   children?: ReactNode;
   titleHeader: string;
 }
@@ -42,6 +42,9 @@ const ModalMissionStyled = styled(Modal)`
     height: 30px;
     border-radius: 50%;
     box-shadow: 0 0 3px #222;
+    &:hover {
+      background: #71b5dc;
+    }
     span {
       font-size: 14px;
       color: #fff;

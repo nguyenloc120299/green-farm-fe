@@ -26,7 +26,7 @@ const TreeStyle: any = styled.div`
     transform: translate(-50%, -50%);
 
     img {
-      transform: scale(1.4);
+      transform: scale(1.8);
       object-fit: cover;
       image-rendering: crisp-edges;
       image-rendering: pixelated;

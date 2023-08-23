@@ -9,7 +9,18 @@ const ModalLotery = () => {
   const isModalOpen = useOpen(IS_OPEN.LOTTERY);
   const { onOpen } = useFnOpen();
   return (
-    <ModalLoteryStyled open={true} centered footer={null} width={300}>
+    <ModalLoteryStyled
+      open={isModalOpen}
+      centered
+      footer={null}
+      width={300}
+      onCancel={() =>
+        onOpen({
+          type: IS_OPEN.LOTTERY,
+          value: false,
+        })
+      }
+    >
       <div className="img-thantai">
         <img src={thantai} />
       </div>
@@ -17,7 +28,8 @@ const ModalLotery = () => {
         <div className="title-reward">Tổng giải thưởng 100.000 đ</div>
         <div
           className="flex justify-center row-time-lotery items-center"
-          style={{ color: "#fff", fontWeight: "700" }}>
+          style={{ color: "#fff", fontWeight: "700" }}
+        >
           <div className="time">04</div>:<div className="time">00</div>:
           <div className="time">00</div>
         </div>
@@ -28,7 +40,17 @@ const ModalLotery = () => {
           </div>
         </div>
         <div className="flex justify-center ">
-          <Button className="btn-buy-ticket">Mua vé</Button>
+          <Button
+            className="btn-buy-ticket"
+            onClick={() =>
+              onOpen({
+                type: IS_OPEN.TICKETS,
+                value: true,
+              })
+            }
+          >
+            Mua vé
+          </Button>
         </div>
       </div>
     </ModalLoteryStyled>

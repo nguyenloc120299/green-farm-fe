@@ -28,7 +28,18 @@ const ModalGames = () => {
             </div>
             <div className="des-games">Tham gia mua vé sổ xố thần tài</div>
             <div className="play-game">
-              <Button>Chơi </Button>
+              <Button
+               onClick={() => {
+                  onOpen({
+                    type: IS_OPEN.LOTTERY,
+                    value: true,
+                  });
+                  onOpen({
+                    type: IS_OPEN.GAMES,
+                    value: false,
+                  });
+                }}
+              >Chơi </Button>
             </div>
           </div>
           <div className="item">

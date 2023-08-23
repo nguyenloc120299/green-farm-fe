@@ -6,6 +6,7 @@ import ModalReferral from "./ModalReferral";
 import ModalWithDraw from "./ModalWithDraw";
 import ModalLuckyWeel from "./ModalLuckyWeel";
 import ModalLotery from "./ModalLotery";
+import ModalTicket from "./ModalTicket";
 
 const Modals = () => {
   return (
@@ -17,6 +18,7 @@ const Modals = () => {
       <ModalWithDraw />
       <ModalLuckyWeel />
       <ModalLotery />
+      <ModalTicket />
     </>
   );
 };

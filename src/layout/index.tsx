@@ -10,10 +10,11 @@ import { useOpen } from "hooks/useOpen";
 import { IS_OPEN } from "contants";
 import Modals from "components/modal";
 import { Button } from "antd";
+import LoginMain from "components/ui/LoginMain";
 const Layout = () => {
   const height = useContentResizer();
   const isOpen = useOpen(IS_OPEN.SEEDS);
-  const isLogin = false;
+  const isLogin = true;
   return (
     <LayoutStyle bg={bg} height={height}>
       <Modals />
@@ -28,14 +29,7 @@ const Layout = () => {
         </div>
       ) : (
         <div className="main-page">
-          <div className="login-page">
-            <div className="form">
-              <div className="options">
-                <Button>Đăng nhập</Button>
-                <Button>Đăng kí</Button>
-              </div>
-            </div>
-          </div>
+          <LoginMain />
         </div>
       )}
     </LayoutStyle>
@@ -60,51 +54,7 @@ const LayoutStyle: any = styled.div`
     background-position: center;
     background-size: cover;
     position: relative;
-    .login-page {
-      position: absolute;
-      width: 100%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      .form {
-        max-width: 300px;
-        margin: auto;
-        width: 100%;
-        border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKAgMAAADwXCcuAAAACVBMVEUAAAAYFCXupGhEFGpVAAAAAXRSTlMAQObYZgAAABpJREFUCNdjYA1lYJBa5cCQwDABGwbJgdQAAKX2CF37xkC2AAAAAElFTkSuQmCC)
-          20% / 1 / 0 stretch;
-        border-style: solid;
-        border-width: 5.25px;
-        image-rendering: pixelated;
-        border-radius: 15px;
-        padding: 2.625px;
-        background-color: rgb(185, 111, 80);
-        padding: 25px 10px;
-        .options {
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-          .ant-btn {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 30px;
-            width: 100%;
-            font-size: 16px;
-            font-weight: 700;
-            height: 50px;
-            color: #ffc000;
-            text-shadow: 0 1px 3px #000;
-            text-align: center;
-            background: radial-gradient(circle, #078c33, #078c33);
-            border-top: 4px ridge #ffb000;
-            border-left: 4px groove #ffb000;
-            border-right: 4px ridge #ffb000;
-            border-bottom: 4px groove #ffb000;
-            box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
-          }
-        }
-      }
-    }
+
     @media (max-width: 478px) {
       height: ${(props: any) => props.height}px;
     }

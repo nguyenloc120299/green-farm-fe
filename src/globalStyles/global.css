@@ -1,18 +1,18 @@
 .flex {
     display: flex;
 }
-.justify-center{
+.justify-center {
     justify-content: center;
 }
-.items-center{
+.items-center {
     align-items: center;
 }
-.justify-between{
+.justify-between {
     justify-content: space-between;
 }
-.mb-1{
+.mb-1 {
     margin-bottom: 0.5rem;
 }
-.text-center{
+.text-center {
     text-align: center;
 }

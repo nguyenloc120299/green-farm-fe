@@ -1,6 +1,8 @@
-import { Button, Col, Form, Input, Row } from "antd";
+import { ArrowLeftOutlined } from "@ant-design/icons";
+import { Checkbox, Form, Input } from "antd";
 import ButtonCustom from "components/elements/Button";
-import React, { useState } from "react";
+import { ColorConstants } from "globalStyles/color";
+import { useState } from "react";
 import { styled } from "styled-components";
 enum TypeForm {
   LOGIN = "LOGIN",
@@ -12,6 +14,10 @@ const LoginMain = () => {
     return (
       <LoginStyled className="login-page">
         <Form className="form">
+          <div className="form-header-title">
+            <ArrowLeftOutlined onClick={() => setTypeForm(null)} />
+            <h3>Đăng nhập</h3>
+          </div>
           <Form.Item>
             <Input placeholder="Email của bạn" />
           </Form.Item>
@@ -28,6 +34,11 @@ const LoginMain = () => {
     return (
       <LoginStyled className="login-page">
         <Form className="form">
+          <div className="form-header-title">
+            <ArrowLeftOutlined onClick={() => setTypeForm(null)} />
+            <h3>Đăng kí</h3>
+          </div>
+
           <Form.Item>
             <Input placeholder="Email của bạn" />
           </Form.Item>
@@ -41,36 +52,20 @@ const LoginMain = () => {
             <Input placeholder="Mã giới thiệu" />
           </Form.Item>
           <Form.Item>
-            <Row gutter={8}>
-              <Col span={14}>
-                <Form.Item
-                  name="captcha"
-                  noStyle
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input the captcha you got!",
-                    },
-                  ]}
-                >
-                  <Input placeholder="Mã xác thực mail" />
-                </Form.Item>
-              </Col>
-              <Col span={4}>
-                <Button>Nhận mã</Button>
-              </Col>
-            </Row>
+            <Form.Item>
+              <Checkbox>Chấp nhận với điều khoản của trò chơi</Checkbox>
+            </Form.Item>
           </Form.Item>
           <Form.Item>
             <ButtonCustom width={100}>Đăng kí</ButtonCustom>
           </Form.Item>
-          <Form.Item></Form.Item>
         </Form>
       </LoginStyled>
     );
   return (
     <LoginStyled className="login-page">
       <div className="form">
+        <h3>Chào mừng bạn đến GreenFarm</h3>
         <div className="options">
           <ButtonCustom width={100} onEvent={() => setTypeForm(TypeForm.LOGIN)}>
             Đăng nhập
@@ -91,14 +86,12 @@ export default LoginMain;
 const LoginStyled = styled.div`
   &.login-page {
     position: absolute;
+    max-width: 375px;
     width: 100%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     .form {
-      max-width: 375px;
-      margin: auto;
-      width: 100%;
       border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKAgMAAADwXCcuAAAACVBMVEUAAAAYFCXupGhEFGpVAAAAAXRSTlMAQObYZgAAABpJREFUCNdjYA1lYJBa5cCQwDABGwbJgdQAAKX2CF37xkC2AAAAAElFTkSuQmCC)
         20% / 1 / 0 stretch;
       border-style: solid;
@@ -106,8 +99,26 @@ const LoginStyled = styled.div`
       image-rendering: pixelated;
       border-radius: 15px;
       padding: 2.625px;
-      background-color: rgb(185, 111, 80);
+      background-color: ${ColorConstants.bg_main_2};
       padding: 25px 10px;
+
+      .form-header-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      h3 {
+        text-align: center;
+        font-size: 24px;
+        font-weight: 700;
+        flex: 1;
+      }
+      .ant-checkbox {
+        span {
+          font-size: 18px;
+          font-weight: 500;
+        }
+      }
       .ant-input {
         min-height: 40px;
         &::placeholder {

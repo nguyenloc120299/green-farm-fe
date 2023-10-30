@@ -23,6 +23,7 @@ const ButtonCustomStyled = styled(Button)<Props_Style>`
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: 700;
     padding: 20px;
     border-radius: 30px;
     color: #ffc000;
@@ -45,6 +46,15 @@ const ButtonCustomStyled = styled(Button)<Props_Style>`
       box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
     }
     &:active {
+      border-color: #ffb000 !important;
+      color: #ffb000 !important;
+      border-top: 4px ridge #ffb000;
+      border-left: 4px groove #ffb000;
+      border-right: 4px ridge #ffb000;
+      border-bottom: 4px groove #ffb000;
+      box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
+    }
+    &:hover {
       border-color: #ffb000 !important;
       color: #ffb000 !important;
       border-top: 4px ridge #ffb000;

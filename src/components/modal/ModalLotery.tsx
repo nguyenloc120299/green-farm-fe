@@ -67,7 +67,7 @@ const ModalLoteryStyled = styled(Modal)`
     border-radius: 50%;
     background: #fff;
     span {
-      font-size: 14px;
+      font-size: 18px;
       color: #aaa;
       font-weight: 700;
     }
@@ -105,12 +105,12 @@ const ModalLoteryStyled = styled(Modal)`
       text-align: center;
       margin-top: -40px;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 20px;
       text-shadow: 0 0 5px #000;
     }
     .reward-text {
       text-align: center;
-      font-size: 16px;
+      font-size: 20px;
       color: #fff;
       font-weight: 700;
       margin-top: 10px;
@@ -128,7 +128,7 @@ const ModalLoteryStyled = styled(Modal)`
         display: flex;
         justify-content: center;
         align-items: center;
-        max-width: 200px;
+        max-width: 270px;
         width: 100%;
         margin-top: 10px;
         padding: 15px 20px;

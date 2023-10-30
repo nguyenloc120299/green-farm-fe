@@ -74,7 +74,7 @@ const ModalReferralStyled = styled(Modal)`
     border-radius: 50%;
     background: #fff;
     span {
-      font-size: 14px;
+      font-size: 18px;
       color: #aaa;
       font-weight: 700;
     }
@@ -98,7 +98,7 @@ const ModalReferralStyled = styled(Modal)`
       flex-direction: column;
 
       .text1 {
-        font-size: 16px;
+        font-size: 20px;
         font-weight: 500;
       }
       .box {
@@ -119,7 +119,7 @@ const ModalReferralStyled = styled(Modal)`
           background: #d8c625;
           color: #fff;
           font-weight: 700;
-          min-width: 200px;
+          min-width: 270px;
         }
       }
     }

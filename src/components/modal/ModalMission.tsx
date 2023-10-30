@@ -9,12 +9,15 @@ const ModalMission = () => {
   const isModalOpen = useOpen(IS_OPEN.MISSION);
   const { onOpen } = useFnOpen();
   return (
-    <ModalBase onCancel={()=>onOpen({
-      type:IS_OPEN.MISSION,
-      value:false,
-    })}
-    isModalOpen={isModalOpen}
-    titleHeader="Nhiệm vụ mỗi ngày"
+    <ModalBase
+      onCancel={() =>
+        onOpen({
+          type: IS_OPEN.MISSION,
+          value: false,
+        })
+      }
+      isModalOpen={isModalOpen}
+      titleHeader="Nhiệm vụ mỗi ngày"
     >
       <BodyStyled className="body">
         <h4>

@@ -46,7 +46,7 @@ const ModalMissionStyled = styled(Modal)`
       background: #71b5dc;
     }
     span {
-      font-size: 14px;
+      font-size: 18px;
       color: #fff;
       font-weight: 700;
     }
@@ -61,14 +61,14 @@ const ModalMissionStyled = styled(Modal)`
       top: -30px;
       left: 50%;
       transform: translate(-50%);
-      width: 200px;
+      width: 270px;
       border-radius: 15px 15px 0 0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 40px;
       background: #84c3e7;
-      font-size: 16px;
+      font-size: 20px;
       font-weight: 700;
     }
   }

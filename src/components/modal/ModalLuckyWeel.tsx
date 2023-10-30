@@ -32,7 +32,8 @@ const ModalLuckyWeel = () => {
           type: IS_OPEN.LUCKYWEEL,
           value: false,
         })
-      }>
+      }
+    >
       <WheelComponent
         segments={segments}
         segColors={segColors}
@@ -62,7 +63,7 @@ const ModalLuckyWeelStyled = styled(Modal)`
     border-radius: 50%;
     background: #fff;
     span {
-      font-size: 14px;
+      font-size: 18px;
       color: #aaa;
       font-weight: 700;
     }

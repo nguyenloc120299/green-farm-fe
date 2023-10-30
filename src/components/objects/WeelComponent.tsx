@@ -270,13 +270,13 @@ const WeelStyled = styled.div`
     .quantity {
       font-weight: 700;
       text-align: center;
-      font-size: 16px;
+      font-size: 20px;
       color: #e5cf80;
       text-shadow: 0 0 10px #000;
     }
     .ant-btn {
       span {
-        font-size: 16px;
+        font-size: 20px;
         text-shadow: 0 0 2px #000;
       }
       &:focus {

@@ -19,7 +19,8 @@ const ModalGames = () => {
         })
       }
       isModalOpen={isModalOpen}
-      titleHeader="Danh sách trò chơi">
+      titleHeader="Danh sách trò chơi"
+    >
       <BodyStyled className="body">
         <div className="list">
           <div className="item">
@@ -29,7 +30,7 @@ const ModalGames = () => {
             <div className="des-games">Tham gia mua vé sổ xố thần tài</div>
             <div className="play-game">
               <Button
-               onClick={() => {
+                onClick={() => {
                   onOpen({
                     type: IS_OPEN.LOTTERY,
                     value: true,
@@ -39,7 +40,9 @@ const ModalGames = () => {
                     value: false,
                   });
                 }}
-              >Chơi </Button>
+              >
+                Chơi{" "}
+              </Button>
             </div>
           </div>
           <div className="item">
@@ -58,7 +61,8 @@ const ModalGames = () => {
                     type: IS_OPEN.GAMES,
                     value: false,
                   });
-                }}>
+                }}
+              >
                 Chơi
               </Button>
             </div>
@@ -109,7 +113,7 @@ const BodyStyled = styled.div`
         }
         .des-games {
           text-align: left;
-          font-size: 14px;
+          font-size: 18px;
           font-weight: 500;
           max-width: 150px;
         }

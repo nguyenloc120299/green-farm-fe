@@ -91,6 +91,7 @@ const LoginStyled = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    box-shadow: 0 0 40px #000;
     .form {
       border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKAgMAAADwXCcuAAAACVBMVEUAAAAYFCXupGhEFGpVAAAAAXRSTlMAQObYZgAAABpJREFUCNdjYA1lYJBa5cCQwDABGwbJgdQAAKX2CF37xkC2AAAAAElFTkSuQmCC)
         20% / 1 / 0 stretch;
@@ -106,6 +107,10 @@ const LoginStyled = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+        span.anticon {
+          font-size: 24px;
+          font-weight: 700;
+        }
       }
       h3 {
         text-align: center;

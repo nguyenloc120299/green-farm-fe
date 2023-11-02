@@ -3,6 +3,7 @@ body {
     padding: 0;
     box-sizing: border-box;
     font-family: "Chakra Petch", sans-serif;
+    cursor: pointer;
 }
 body::-webkit-scrollbar {
     display: none;

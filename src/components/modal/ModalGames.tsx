@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import logo_bg from "assets/mipmap-xxxhdpi-v4/unlock_people_bg.png";
 import { IS_OPEN } from "contants";
 import { useFnOpen, useOpen } from "hooks/useOpen";
 import React from "react";
@@ -7,6 +7,7 @@ import ModalBase from "./ModalBaseCustom";
 import loteryIcon from "assets/games/lottery.png";
 import fortuneWheel from "assets/games/fortune-wheel.png";
 import trophy from "assets/games/trophy.png";
+import bg_play from "assets/mipmap-xxxhdpi-v4/time_reward_btn_sel.png";
 const ModalGames = () => {
   const isModalOpen = useOpen(IS_OPEN.GAMES);
   const { onOpen } = useFnOpen();
@@ -21,28 +22,30 @@ const ModalGames = () => {
       isModalOpen={isModalOpen}
       titleHeader="Danh sách trò chơi"
     >
-      <BodyStyled className="body">
+      <BodyStyled className="body" bgLogo={logo_bg}>
         <div className="list">
           <div className="item">
             <div className="logo">
               <img src={loteryIcon} alt="loteryIcon" />
             </div>
             <div className="des-games">Tham gia mua vé sổ xố thần tài</div>
-            <div className="play-game">
-              <Button
-                onClick={() => {
-                  onOpen({
-                    type: IS_OPEN.LOTTERY,
-                    value: true,
-                  });
-                  onOpen({
-                    type: IS_OPEN.GAMES,
-                    value: false,
-                  });
-                }}
-              >
-                Chơi{" "}
-              </Button>
+            <div
+              className="play-game"
+              onClick={() => {
+                onOpen({
+                  type: IS_OPEN.LOTTERY,
+                  value: true,
+                });
+                onOpen({
+                  type: IS_OPEN.GAMES,
+                  value: false,
+                });
+              }}
+            >
+              <img src={bg_play} />
+              <div className="text-title">
+                <h4>Chơi</h4>
+              </div>
             </div>
           </div>
           <div className="item">
@@ -50,21 +53,23 @@ const ModalGames = () => {
               <img src={fortuneWheel} alt="loteryIcon" />
             </div>
             <div className="des-games">Tham gia vòng xoay may mắn</div>
-            <div className="play-game">
-              <Button
-                onClick={() => {
-                  onOpen({
-                    type: IS_OPEN.LUCKYWEEL,
-                    value: true,
-                  });
-                  onOpen({
-                    type: IS_OPEN.GAMES,
-                    value: false,
-                  });
-                }}
-              >
-                Chơi
-              </Button>
+            <div
+              className="play-game"
+              onClick={() => {
+                onOpen({
+                  type: IS_OPEN.LUCKYWEEL,
+                  value: true,
+                });
+                onOpen({
+                  type: IS_OPEN.GAMES,
+                  value: false,
+                });
+              }}
+            >
+              <img src={bg_play} />
+              <div className="text-title">
+                <h4>Chơi</h4>
+              </div>
             </div>
           </div>
           <div className="item">
@@ -75,7 +80,10 @@ const ModalGames = () => {
               Tham gia cuộc đua của những loài thú
             </div>
             <div className="play-game">
-              <Button>Chơi </Button>
+              <img src={bg_play} />
+              <div className="text-title">
+                <h4>Chơi</h4>
+              </div>
             </div>
           </div>
         </div>
@@ -85,7 +93,7 @@ const ModalGames = () => {
 };
 
 export default ModalGames;
-const BodyStyled = styled.div`
+const BodyStyled: any = styled.div`
   &.body {
     background: #fff;
     border-radius: 5px;
@@ -96,6 +104,7 @@ const BodyStyled = styled.div`
       .item {
         height: 70px;
         background-color: #84c3e7;
+        box-shadow: 4px 4px 0 #ccc;
         border-radius: 10px;
         margin-bottom: 7px;
         padding: 5px;
@@ -103,11 +112,16 @@ const BodyStyled = styled.div`
         justify-content: space-between;
         align-items: center;
         .logo {
-          width: 32px;
+          width: 50px;
+          height: 50px;
           margin-right: 10px;
+          background: url(${(props: any) => props.bgLogo}) no-repeat;
+          background-position: center;
+          background-size: cover;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           img {
-            width: 100%;
-            height: 100%;
             object-fit: cover;
           }
         }
@@ -119,35 +133,27 @@ const BodyStyled = styled.div`
         }
 
         .play-game {
-          .ant-btn {
+          width: 70px;
+          height: 30px;
+          position: relative;
+          .text-title {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            max-width: 100px;
-            border-radius: 30px;
-            color: #ffc000;
-            text-shadow: 0 1px 3px #000;
-            text-align: center;
-            background: radial-gradient(circle, #078c33, #078c33);
-            border-top: 4px ridge #ffb000;
-            border-left: 4px groove #ffb000;
-            border-right: 4px ridge #ffb000;
-            border-bottom: 4px groove #ffb000;
-            box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
-            &:focus {
-              border-top: 4px ridge #ffb000;
-              border-left: 4px groove #ffb000;
-              border-right: 4px ridge #ffb000;
-              border-bottom: 4px groove #ffb000;
-              box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
+            h4 {
+              font-size: 14px;
+              font-weight: 700;
+              color: #fff;
             }
-            &:active {
-              border-top: 4px ridge #ffb000;
-              border-left: 4px groove #ffb000;
-              border-right: 4px ridge #ffb000;
-              border-bottom: 4px groove #ffb000;
-              box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
-            }
+          }
+          img {
+            width: 100%;
+            height: 100%;
           }
         }
       }

@@ -35,13 +35,14 @@ const ModalBase = ({
 export default ModalBase;
 const ModalMissionStyled = styled(Modal)`
   .ant-modal-close {
-    top: -5px;
+    top: -40px;
     right: -5px;
     background: #71b5dc;
     width: 30px;
     height: 30px;
     border-radius: 50%;
     box-shadow: 0 0 3px #222;
+    border: 3px solid #fff;
     &:hover {
       background: #71b5dc;
     }
@@ -54,15 +55,15 @@ const ModalMissionStyled = styled(Modal)`
   .ant-modal-content {
     background-color: #84c3e7;
     position: relative;
-    padding: 12px;
-    border-radius: 10px;
+    padding: 18px;
+    border-radius: 12px;
     .header {
       position: absolute;
       top: -30px;
       left: 50%;
       transform: translate(-50%);
       width: 270px;
-      border-radius: 15px 15px 0 0;
+      border-radius: 50px 50px 0 0;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -70,6 +71,8 @@ const ModalMissionStyled = styled(Modal)`
       background: #84c3e7;
       font-size: 20px;
       font-weight: 700;
+      color: #1e5c80;
+      text-shadow: 0 3px 3px #fff;
     }
   }
 `;

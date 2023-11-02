@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
-import carot from "assets/image/carot_avt.png";
-import corn from "assets/image/corn_avt.png";
-
+import carot from "assets/mipmap-xxxhdpi-v4/home_house_npc9.png";
+import corn from "assets/mipmap-xxxhdpi-v4/home_house_npc1.png";
+import rice from "assets/mipmap-xxxhdpi-v4/home_house_npc2.png";
 import { useFnOpen } from "hooks/useOpen";
 
 const SeedsBox = () => {
@@ -14,11 +14,15 @@ const SeedsBox = () => {
       <div className="body">
         <div className="seed">
           <img src={carot} />
-          <div className="quantity">100</div>
+          <div className="quantity">100k</div>
         </div>
         <div className="seed">
           <img src={corn} />
-          <div className="quantity">5</div>
+          <div className="quantity">50k</div>
+        </div>
+        <div className="seed">
+          <img src={rice} />
+          <div className="quantity">20k</div>
         </div>
       </div>
     </SeedBoxStyles>
@@ -42,8 +46,10 @@ const SeedBoxStyles = styled.div`
     transition: all 0.3s ease-in-out;
     opacity: 1;
     display: flex;
-    justify-content: center;
+    justify-content: start;
+    gap: 10px;
     align-items: center;
+    padding: 0 10px;
     .seed {
       width: 60px;
       height: 60px;
@@ -55,6 +61,10 @@ const SeedBoxStyles = styled.div`
       margin-right: 5px;
       position: relative;
       cursor: pointer;
+      img {
+        width: 70%;
+        height: 70%;
+      }
       .quantity {
         position: absolute;
         right: -4px;

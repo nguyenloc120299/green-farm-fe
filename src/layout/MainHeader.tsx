@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import money from "assets/image/money.png";
 import dollar from "assets/image/dollar.png";
-import plus from "assets/image/plus.png";
+import plus from "assets/mipmap-xxxhdpi-v4/home_add_icon.png";
 import { useFnOpen } from "hooks/useOpen";
 import { IS_OPEN } from "contants";
 import Avatar from "components/elements/Avatar";
@@ -14,10 +14,12 @@ const MainHeader = () => {
         <div className="left">
           <div>
             <Avatar
-            onHandle={()=>onOpen({
-              type:IS_OPEN.PROFILE,
-              value:true
-            })}
+              onHandle={() =>
+                onOpen({
+                  type: IS_OPEN.PROFILE,
+                  value: true,
+                })
+              }
             />
           </div>
           <div className="money">
@@ -110,9 +112,12 @@ const MainHeaderStyle = styled.div`
           right: 0px;
           top: 50%;
           transform: translateY(-50%);
+          display: flex;
+          justify-content: center;
+          align-items: center;
           img {
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
           }
         }
       }

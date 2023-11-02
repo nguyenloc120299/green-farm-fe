@@ -9,7 +9,6 @@ import SeedsBox from "components/ui/SeedsBox";
 import { useOpen } from "hooks/useOpen";
 import { IS_OPEN } from "contants";
 import Modals from "components/modal";
-import { Button } from "antd";
 import LoginMain from "components/ui/LoginMain";
 const Layout = () => {
   const height = useContentResizer();

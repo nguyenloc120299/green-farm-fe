@@ -13,7 +13,7 @@ import LoginMain from "components/ui/LoginMain";
 const Layout = () => {
   const height = useContentResizer();
   const isOpen = useOpen(IS_OPEN.SEEDS);
-  const isLogin = true;
+  const isLogin = false;
   return (
     <LayoutStyle bg={bg} height={height}>
       <Modals />

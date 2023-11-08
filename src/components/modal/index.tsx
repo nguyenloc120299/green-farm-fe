@@ -7,6 +7,7 @@ import ModalWithDraw from "./ModalWithDraw";
 import ModalLuckyWeel from "./ModalLuckyWeel";
 import ModalLotery from "./ModalLotery";
 import ModalTicket from "./ModalTicket";
+import ModalDeposit from "./ModalDeposit";
 
 const Modals = () => {
   return (
@@ -19,6 +20,7 @@ const Modals = () => {
       <ModalLuckyWeel />
       <ModalLotery />
       <ModalTicket />
+      <ModalDeposit />
     </>
   );
 };

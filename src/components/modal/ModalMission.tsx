@@ -66,7 +66,7 @@ const ModalMission = () => {
 export default ModalMission;
 const BodyStyled: any = styled.div`
   &.body {
-    background: #fff;
+    position: relative;
     border-radius: 5px;
     padding: 10px;
     h4 {

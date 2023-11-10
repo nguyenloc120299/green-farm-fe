@@ -5,6 +5,7 @@ body {
     font-family: "Chakra Petch", sans-serif;
     cursor: pointer;
 }
+
 body::-webkit-scrollbar {
     display: none;
 }

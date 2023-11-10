@@ -5,6 +5,7 @@ import { IS_OPEN } from "contants";
 import { useFnOpen } from "hooks/useOpen";
 import havertIcon from "assets/mipmap-xxxhdpi-v4/home_qipao_1.png";
 import { lands } from "types/land";
+import Lock from "components/objects/LockLand";
 
 const Field = () => {
   const { onOpen } = useFnOpen();
@@ -23,7 +24,8 @@ const Field = () => {
           }}
         >
           {index < 4 && <Seed />}
-          {index >= 4 && <Mark />}
+          {index === 4 && <Mark />}
+          {index > 4 && <Lock />}
           <div className="havert">
             {/* <img src={havertIcon} /> */}
             {/* <div className="time-end">00:50</div> */}

@@ -1,7 +1,7 @@
 import { Button, Modal } from "antd";
 import { IS_OPEN } from "contants";
 import { useFnOpen, useOpen } from "hooks/useOpen";
-import React from "react";
+import close from 'assets/mipmap-xxxhdpi-v4/home_dialog_close.png'
 import thantai from "assets/image/thantai.png";
 import { styled } from "styled-components";
 
@@ -59,17 +59,16 @@ const ModalLotery = () => {
 
 export default ModalLotery;
 const ModalLoteryStyled = styled(Modal)`
-  .ant-modal-close {
-    top: 5px;
-    right: 5px;
+    .ant-modal-close {
+    top: 0px;
+    right: 0px;
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background: #fff;
+    background: url(${close});
+    background-size: 100%;
     span {
-      font-size: 18px;
-      color: #aaa;
-      font-weight: 700;
+      display: none;
     }
   }
 

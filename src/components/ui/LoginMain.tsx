@@ -1,55 +1,55 @@
-import { ArrowLeftOutlined } from "@ant-design/icons";
-import { Checkbox, Form, Input } from "antd";
-import ButtonCustom from "components/elements/Button";
-import { ColorConstants } from "globalStyles/color";
-import { useState } from "react";
-import { styled } from "styled-components";
+import { ArrowLeftOutlined } from '@ant-design/icons'
+import { Checkbox, Form, Input } from 'antd'
+import ButtonCustom from 'components/elements/Button'
+import { ColorConstants } from 'globalStyles/color'
+import { useState } from 'react'
+import { styled } from 'styled-components'
 enum TypeForm {
-  LOGIN = "LOGIN",
-  REGISTER = "REGISTER",
+  LOGIN = 'LOGIN',
+  REGISTER = 'REGISTER'
 }
 const LoginMain = () => {
-  const [typeForm, setTypeForm] = useState<TypeForm | null>(null);
+  const [typeForm, setTypeForm] = useState<TypeForm | null>(null)
   if (typeForm === TypeForm.LOGIN)
     return (
-      <LoginStyled className="login-page">
-        <Form className="form">
-          <div className="form-header-title">
+      <LoginStyled className='login-page'>
+        <Form className='form'>
+          <div className='form-header-title'>
             <ArrowLeftOutlined onClick={() => setTypeForm(null)} />
             <h3>Đăng nhập</h3>
           </div>
           <Form.Item>
-            <Input placeholder="Email của bạn" />
+            <Input placeholder='Email của bạn' />
           </Form.Item>
           <Form.Item>
-            <Input placeholder="Mật khẩu của bạn" />
+            <Input placeholder='Mật khẩu của bạn' type='password' />
           </Form.Item>
           <Form.Item>
             <ButtonCustom width={100}>Đăng nhập</ButtonCustom>
           </Form.Item>
         </Form>
       </LoginStyled>
-    );
+    )
   else if (typeForm === TypeForm.REGISTER)
     return (
-      <LoginStyled className="login-page">
-        <Form className="form">
-          <div className="form-header-title">
+      <LoginStyled className='login-page'>
+        <Form className='form'>
+          <div className='form-header-title'>
             <ArrowLeftOutlined onClick={() => setTypeForm(null)} />
             <h3>Đăng kí</h3>
           </div>
 
           <Form.Item>
-            <Input placeholder="Email của bạn" />
+            <Input placeholder='Email của bạn' />
           </Form.Item>
           <Form.Item>
-            <Input placeholder="Mật khẩu của bạn" />
+            <Input placeholder='Mật khẩu của bạn' />
           </Form.Item>
           <Form.Item>
-            <Input placeholder="Nhập lại mật khẩu" />
+            <Input placeholder='Nhập lại mật khẩu' />
           </Form.Item>
           <Form.Item>
-            <Input placeholder="Mã giới thiệu" />
+            <Input placeholder='Mã giới thiệu' />
           </Form.Item>
           <Form.Item>
             <Form.Item>
@@ -61,12 +61,12 @@ const LoginMain = () => {
           </Form.Item>
         </Form>
       </LoginStyled>
-    );
+    )
   return (
-    <LoginStyled className="login-page">
-      <div className="form">
+    <LoginStyled className='login-page'>
+      <div className='form'>
         <h3>Chào mừng bạn đến GreenFarm</h3>
-        <div className="options">
+        <div className='options'>
           <ButtonCustom width={100} onEvent={() => setTypeForm(TypeForm.LOGIN)}>
             Đăng nhập
           </ButtonCustom>
@@ -79,10 +79,10 @@ const LoginMain = () => {
         </div>
       </div>
     </LoginStyled>
-  );
-};
+  )
+}
 
-export default LoginMain;
+export default LoginMain
 const LoginStyled = styled.div`
   &.login-page {
     position: absolute;
@@ -143,4 +143,4 @@ const LoginStyled = styled.div`
       }
     }
   }
-`;
+`

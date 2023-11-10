@@ -1,19 +1,21 @@
-import React from "react";
-import treeImg from "assets/farm/tree-001.png";
-import styled from "styled-components";
-import { PropsType } from "global";
+import React from 'react'
+import treeImg from 'assets/farm/tree-001.png'
+import styled from 'styled-components'
+import { PropsType } from 'global'
+import Lock from './LockLand'
 
 const Tree = ({ column, row }: PropsType) => {
   return (
     <TreeStyle style={{ gridColumn: column, gridRow: row }}>
-      <div className="tree">
-        <img src={treeImg} alt="tree" />
+      <div className='tree'>
+        <img src={treeImg} alt='tree' />
       </div>
+      <Lock />
     </TreeStyle>
-  );
-};
+  )
+}
 
-export default Tree;
+export default Tree
 const TreeStyle: any = styled.div`
   display: flex;
   justify-content: center;
@@ -49,4 +51,4 @@ const TreeStyle: any = styled.div`
       transform: rotate(3deg);
     }
   }
-`;
+`

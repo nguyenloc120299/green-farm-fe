@@ -3,7 +3,7 @@ import styled from "styled-components";
 import minigame from "assets/image/joystick.png";
 import mision from "assets/image/target.png";
 import man from "assets/image/man.png";
-import mail from "assets/image/mailbox.png";
+import rank from "assets/image/ranking.png";
 import { useFnOpen } from "hooks/useOpen";
 import { IS_OPEN } from "contants";
 import { ColorConstants } from "globalStyles/color";
@@ -56,8 +56,8 @@ const MainFooter = () => {
         </div>
         <div className="box">
           <div className="col">
-            <img src={mail} />
-            <div className="text">Thông báo</div>
+            <img src={rank} />
+            <div className="text">Xếp hạng</div>
           </div>
         </div>
       </div>

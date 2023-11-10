@@ -1,87 +1,87 @@
-import logo_bg from "assets/mipmap-xxxhdpi-v4/unlock_people_bg.png";
-import { IS_OPEN } from "contants";
-import { useFnOpen, useOpen } from "hooks/useOpen";
-import React from "react";
-import styled from "styled-components";
-import ModalBase from "./ModalBaseCustom";
-import loteryIcon from "assets/games/lottery.png";
-import fortuneWheel from "assets/games/fortune-wheel.png";
-import trophy from "assets/games/trophy.png";
-import bg_play from "assets/mipmap-xxxhdpi-v4/time_reward_btn_sel.png";
+import logo_bg from 'assets/mipmap-xxxhdpi-v4/unlock_people_bg.png'
+import { IS_OPEN } from 'contants'
+import { useFnOpen, useOpen } from 'hooks/useOpen'
+import React from 'react'
+import styled from 'styled-components'
+import ModalBase from './ModalBaseCustom'
+import loteryIcon from 'assets/games/lottery.png'
+import fortuneWheel from 'assets/games/fortune-wheel.png'
+import trophy from 'assets/games/trophy.png'
+import bg_play from 'assets/mipmap-xxxhdpi-v4/time_reward_btn_sel.png'
 const ModalGames = () => {
-  const isModalOpen = useOpen(IS_OPEN.GAMES);
-  const { onOpen } = useFnOpen();
+  const isModalOpen = useOpen(IS_OPEN.GAMES)
+  const { onOpen } = useFnOpen()
   return (
     <ModalBase
       onCancel={() =>
         onOpen({
           type: IS_OPEN.GAMES,
-          value: false,
+          value: false
         })
       }
       isModalOpen={isModalOpen}
-      titleHeader="Danh sách trò chơi"
+      titleHeader='Danh sách trò chơi'
     >
-      <BodyStyled className="body" bgLogo={logo_bg}>
-        <div className="list">
-          <div className="item">
-            <div className="logo">
-              <img src={loteryIcon} alt="loteryIcon" />
+      <BodyStyled className='body' bgLogo={logo_bg}>
+        <div className='list'>
+          <div className='item'>
+            <div className='logo'>
+              <img src={loteryIcon} alt='loteryIcon' />
             </div>
-            <div className="des-games">Tham gia mua vé sổ xố thần tài</div>
+            <div className='des-games'>Tham gia mua vé sổ xố thần tài</div>
             <div
-              className="play-game"
+              className='play-game'
               onClick={() => {
                 onOpen({
                   type: IS_OPEN.LOTTERY,
-                  value: true,
-                });
+                  value: true
+                })
                 onOpen({
                   type: IS_OPEN.GAMES,
-                  value: false,
-                });
+                  value: false
+                })
               }}
             >
               <img src={bg_play} />
-              <div className="text-title">
+              <div className='text-title'>
                 <h4>Chơi</h4>
               </div>
             </div>
           </div>
-          <div className="item">
-            <div className="logo">
-              <img src={fortuneWheel} alt="loteryIcon" />
+          <div className='item'>
+            <div className='logo'>
+              <img src={fortuneWheel} alt='loteryIcon' />
             </div>
-            <div className="des-games">Tham gia vòng xoay may mắn</div>
+            <div className='des-games'>Tham gia vòng xoay may mắn</div>
             <div
-              className="play-game"
+              className='play-game'
               onClick={() => {
                 onOpen({
                   type: IS_OPEN.LUCKYWEEL,
-                  value: true,
-                });
+                  value: true
+                })
                 onOpen({
                   type: IS_OPEN.GAMES,
-                  value: false,
-                });
+                  value: false
+                })
               }}
             >
               <img src={bg_play} />
-              <div className="text-title">
+              <div className='text-title'>
                 <h4>Chơi</h4>
               </div>
             </div>
           </div>
-          <div className="item">
-            <div className="logo">
-              <img src={trophy} alt="loteryIcon" />
+          <div className='item'>
+            <div className='logo'>
+              <img src={trophy} alt='loteryIcon' />
             </div>
-            <div className="des-games">
+            <div className='des-games'>
               Tham gia cuộc đua của những loài thú
             </div>
-            <div className="play-game">
+            <div className='play-game'>
               <img src={bg_play} />
-              <div className="text-title">
+              <div className='text-title'>
                 <h4>Chơi</h4>
               </div>
             </div>
@@ -89,13 +89,13 @@ const ModalGames = () => {
         </div>
       </BodyStyled>
     </ModalBase>
-  );
-};
+  )
+}
 
-export default ModalGames;
+export default ModalGames
 const BodyStyled: any = styled.div`
   &.body {
-    background: #fff;
+    position: relative;
     border-radius: 5px;
     padding: 10px;
     .list {
@@ -159,4 +159,4 @@ const BodyStyled: any = styled.div`
       }
     }
   }
-`;
+`

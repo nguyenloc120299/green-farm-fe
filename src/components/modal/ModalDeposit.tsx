@@ -1,60 +1,63 @@
-import { Modal } from "antd";
-import { IS_OPEN } from "contants";
-import { useFnOpen, useOpen } from "hooks/useOpen";
-import React from "react";
-import { styled } from "styled-components";
-import bg from "assets/mipmap-xxxhdpi-v4/home_dialog_bg.9.png";
-import header_bg from "assets/mipmap-xxxhdpi-v4/reward_dialog_title_bg.png";
-import close from "assets/mipmap-xxxhdpi-v4/home_dialog_close.png";
-import reward from "assets/mipmap-xxxhdpi-v4/offline_reward_chart.png";
-import btn from "assets/mipmap-xxxhdpi-v4/time_reward_btn_sel.png";
+import { Modal } from 'antd'
+import { IS_OPEN } from 'contants'
+import { useFnOpen, useOpen } from 'hooks/useOpen'
+import React from 'react'
+import { styled } from 'styled-components'
+import bg from 'assets/mipmap-xxxhdpi-v4/home_dialog_bg.9.png'
+import header_bg from 'assets/mipmap-xxxhdpi-v4/reward_dialog_title_bg.png'
+import close from 'assets/mipmap-xxxhdpi-v4/home_dialog_close.png'
+import reward from 'assets/mipmap-xxxhdpi-v4/offline_reward_chart.png'
+import btn from 'assets/mipmap-xxxhdpi-v4/time_reward_btn_sel.png'
 const ModalDeposit = () => {
-  const isModalOpen = useOpen(IS_OPEN.TICKETS);
-  const { onOpen } = useFnOpen();
+  const isModalOpen = useOpen(IS_OPEN.DEPOSIT)
+  const { onOpen } = useFnOpen()
   return (
     <ModalDepositStyled
       onCancel={() =>
         onOpen({
-          type: IS_OPEN.TICKETS,
-          value: false,
+          type: IS_OPEN.DEPOSIT,
+          value: false
         })
       }
-      open={true}
+      open={isModalOpen}
       width={400}
       centered
       footer={null}
     >
       <div
         style={{
-          position: "absolute",
-          width: "100%",
-          height: "100%",
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
           left: 0,
           top: 0,
+          display: 'flex'
         }}
       >
-        <img src={bg} style={{ width: "100%", height: "100%" }} />
+        <img src={bg} style={{ width: '100%', height: '100%' }} alt='' />
       </div>
-      <div className="header"></div>
-      <div className="reward_img">
-        <img src={reward} />
-        <div className="total-coin-deposit">
+      <div className='header'>
+        <h1>Nạp tiền vàng</h1>
+      </div>
+      <div className='reward_img'>
+        <img src={reward} alt='' />
+        <div className='total-coin-deposit'>
           <h3>100k </h3>
         </div>
       </div>
       <div>
-        <div className="btn-desposit">
-          <img src={btn} />
-          <div className="content">
+        <div className='btn-desposit'>
+          <img src={btn} alt='' />
+          <div className='content'>
             <span>Nạp vàng</span>
           </div>
         </div>
       </div>
     </ModalDepositStyled>
-  );
-};
+  )
+}
 
-export default ModalDeposit;
+export default ModalDeposit
 
 const ModalDepositStyled = styled(Modal)`
   .ant-modal-close {
@@ -89,6 +92,16 @@ const ModalDepositStyled = styled(Modal)`
       transform: translateX(-50%);
       width: 80%;
       height: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: start;
+      h1 {
+        font-size: 20px;
+        font-weight: 700;
+        color: black;
+        margin: 10px;
+        
+      }
     }
     .reward_img {
       display: flex;
@@ -135,4 +148,4 @@ const ModalDepositStyled = styled(Modal)`
       }
     }
   }
-`;
+`

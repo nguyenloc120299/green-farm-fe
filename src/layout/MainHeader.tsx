@@ -1,51 +1,58 @@
-import React from "react";
-import styled from "styled-components";
-import money from "assets/image/money.png";
-import dollar from "assets/image/dollar.png";
-import plus from "assets/mipmap-xxxhdpi-v4/home_add_icon.png";
-import { useFnOpen } from "hooks/useOpen";
-import { IS_OPEN } from "contants";
-import Avatar from "components/elements/Avatar";
+import styled from 'styled-components'
+import money from 'assets/image/money.png'
+import dollar from 'assets/image/dollar.png'
+import plus from 'assets/mipmap-xxxhdpi-v4/home_add_icon.png'
+import { useFnOpen } from 'hooks/useOpen'
+import { IS_OPEN } from 'contants'
+import Avatar from 'components/elements/Avatar'
 const MainHeader = () => {
-  const { onOpen } = useFnOpen();
+  const { onOpen } = useFnOpen()
   return (
     <MainHeaderStyle>
-      <div className="header">
-        <div className="left">
+      <div className='header'>
+        <div className='left'>
           <div>
             <Avatar
               onHandle={() =>
                 onOpen({
                   type: IS_OPEN.PROFILE,
-                  value: true,
+                  value: true
                 })
               }
             />
           </div>
-          <div className="money">
+          <div className='money'>
             8k
-            <div className="icon">
-              <img src={money} alt="" />
+            <div className='icon'>
+              <img src={money} alt='' />
             </div>
           </div>
         </div>
-        <div className="right">
-          <div className="coin">
+        <div className='right'>
+          <div className='coin'>
             420
-            <div className="dollar">
-              <img src={dollar} alt="" />
+            <div className='dollar'>
+              <img src={dollar} alt='' />
             </div>
-            <div className="plus">
-              <img src={plus} alt="" />
+            <div
+              className='plus'
+              onClick={() =>
+                onOpen({
+                  type: IS_OPEN.DEPOSIT,
+                  value: true
+                })
+              }
+            >
+              <img src={plus} alt='' />
             </div>
           </div>
         </div>
       </div>
     </MainHeaderStyle>
-  );
-};
+  )
+}
 
-export default MainHeader;
+export default MainHeader
 const MainHeaderStyle = styled.div`
   position: absolute;
   top: 0;
@@ -123,4 +130,4 @@ const MainHeaderStyle = styled.div`
       }
     }
   }
-`;
+`

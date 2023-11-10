@@ -46,7 +46,7 @@ const ModalLuckyWeel = () => {
         upDuration={500}
         downDuration={600}
         fontFamily=""
-        winningSegment={"Thắng 10"}
+        winningSegment={"🍊"}
       />
     </ModalLuckyWeelStyled>
   );

@@ -1,35 +1,50 @@
-import React, { useRef } from "react";
-import styled from "styled-components";
-import carot from "assets/mipmap-xxxhdpi-v4/home_house_npc9.png";
-import corn from "assets/mipmap-xxxhdpi-v4/home_house_npc1.png";
-import rice from "assets/mipmap-xxxhdpi-v4/home_house_npc2.png";
-import { useFnOpen } from "hooks/useOpen";
+import React, { useRef } from 'react'
+import styled from 'styled-components'
+import carot from 'assets/mipmap-xxxhdpi-v4/home_house_npc9.png'
+import corn from 'assets/mipmap-xxxhdpi-v4/home_house_npc1.png'
+import rice from 'assets/mipmap-xxxhdpi-v4/home_house_npc2.png'
+import { useFnOpen, useOpen } from 'hooks/useOpen'
+import useClickOutSide from 'hooks/useClickOutSide'
+import { IS_OPEN } from 'contants'
 
 const SeedsBox = () => {
-  const refDisplay = useRef<any>();
-  const { onOpen } = useFnOpen();
-
+  const refDisplay = useRef<any>()
+  const { onOpen } = useFnOpen()
+  const isOpen = useOpen(IS_OPEN.SEEDS)
+  useClickOutSide(
+    refDisplay,
+    () =>
+      isOpen &&
+      onOpen({
+        type: IS_OPEN.SEEDS,
+        value: false
+      })
+  )
   return (
-    <SeedBoxStyles ref={refDisplay}>
-      <div className="body">
-        <div className="seed">
-          <img src={carot} />
-          <div className="quantity">100k</div>
-        </div>
-        <div className="seed">
-          <img src={corn} />
-          <div className="quantity">50k</div>
-        </div>
-        <div className="seed">
-          <img src={rice} />
-          <div className="quantity">20k</div>
-        </div>
-      </div>
-    </SeedBoxStyles>
-  );
-};
+    <>
+      {isOpen && (
+        <SeedBoxStyles ref={refDisplay}>
+          <div className='body'>
+            <div className='seed'>
+              <img src={carot} />
+              <div className='quantity'>100k</div>
+            </div>
+            <div className='seed'>
+              <img src={corn} />
+              <div className='quantity'>50k</div>
+            </div>
+            <div className='seed'>
+              <img src={rice} />
+              <div className='quantity'>20k</div>
+            </div>
+          </div>
+        </SeedBoxStyles>
+      )}
+    </>
+  )
+}
 
-export default SeedsBox;
+export default SeedsBox
 const SeedBoxStyles = styled.div`
   position: fixed;
   top: 10%;
@@ -84,4 +99,4 @@ const SeedBoxStyles = styled.div`
       }
     }
   }
-`;
+`

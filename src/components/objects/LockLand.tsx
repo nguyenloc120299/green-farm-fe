@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import lock from 'assets/image/lock.png'
+import lock from 'assets/mipmap-xxxhdpi-v4/unlock_image.png'
 const Lock = () => {
   return (
     <LockStyled>
@@ -19,7 +19,7 @@ const LockStyled = styled.div`
   transform: translate(-50%, -50%);
   
   img {
-    width: 20px;
+    width: 15px;
     object-fit: cover;
   }
 `

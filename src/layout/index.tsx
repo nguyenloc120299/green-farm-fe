@@ -1,41 +1,39 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
-import styled from "styled-components";
-import bg from "assets/bg/bg-main.jpg";
-import MainHeader from "./MainHeader";
-import MainFooter from "./MainFooter";
-import useContentResizer from "hooks/useContentResizer";
-import SeedsBox from "components/ui/SeedsBox";
-import { useOpen } from "hooks/useOpen";
-import { IS_OPEN } from "contants";
-import Modals from "components/modal";
-import LoginMain from "components/ui/LoginMain";
+import React from 'react'
+import { Outlet } from 'react-router-dom'
+import styled from 'styled-components'
+import bg from 'assets/bg/bg-main.jpg'
+import MainHeader from './MainHeader'
+import MainFooter from './MainFooter'
+import useContentResizer from 'hooks/useContentResizer'
+import SeedsBox from 'components/ui/SeedsBox'
+import Modals from 'components/modal'
+import LoginMain from 'components/ui/LoginMain'
 const Layout = () => {
-  const height = useContentResizer();
-  const isOpen = useOpen(IS_OPEN.SEEDS);
-  const isLogin = true;
+  const height = useContentResizer()
+  const isLogin = true
   return (
     <LayoutStyle bg={bg} height={height}>
       <Modals />
       {isLogin ? (
-        <div className="main-page">
-          {isOpen && <SeedsBox />}
+        <div className='main-page'>
+          <SeedsBox />
+
           <MainHeader />
-          <div className="farm">
+          <div className='farm'>
             <Outlet />
           </div>
           <MainFooter />
         </div>
       ) : (
-        <div className="main-page">
+        <div className='main-page'>
           <LoginMain />
         </div>
       )}
     </LayoutStyle>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout
 
 const LayoutStyle: any = styled.div`
   width: 100%;
@@ -66,4 +64,4 @@ const LayoutStyle: any = styled.div`
       overflow-y: clip;
     }
   }
-`;
+`

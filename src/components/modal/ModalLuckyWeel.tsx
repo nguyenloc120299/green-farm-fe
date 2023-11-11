@@ -2,7 +2,7 @@ import { Modal } from "antd";
 import WheelComponent from "components/objects/WeelComponent";
 import { IS_OPEN } from "contants";
 import { useFnOpen, useOpen } from "hooks/useOpen";
-
+import close from 'assets/mipmap-xxxhdpi-v4/home_dialog_close.png'
 import { styled } from "styled-components";
 
 const ModalLuckyWeel = () => {
@@ -55,17 +55,16 @@ const ModalLuckyWeel = () => {
 export default ModalLuckyWeel;
 
 const ModalLuckyWeelStyled = styled(Modal)`
-  .ant-modal-close {
-    top: 5px;
-    right: 5px;
+   .ant-modal-close {
+    top: 0px;
+    right: 0px;
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background: #fff;
+    background: url(${close});
+    background-size: 100%;
     span {
-      font-size: 18px;
-      color: #aaa;
-      font-weight: 700;
+      display: none;
     }
   }
 

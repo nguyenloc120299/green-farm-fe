@@ -5,6 +5,7 @@ import plus from 'assets/mipmap-xxxhdpi-v4/home_add_icon.png'
 import { useFnOpen } from 'hooks/useOpen'
 import { IS_OPEN } from 'contants'
 import Avatar from 'components/elements/Avatar'
+import withdraw from "assets/mipmap-xxxhdpi-v4/home_tx_icon.png"
 const MainHeader = () => {
   const { onOpen } = useFnOpen()
   return (
@@ -25,6 +26,15 @@ const MainHeader = () => {
             8k
             <div className='icon'>
               <img src={money} alt='' />
+            </div>
+            <div
+              className='plus'
+              onClick={() => onOpen({
+                type: IS_OPEN.WITHDRAW,
+                value: true
+              })}
+            >
+              <img src={withdraw} alt='' />
             </div>
           </div>
         </div>
@@ -82,6 +92,19 @@ const MainHeaderStyle = styled.div`
         color: #fff;
         font-weight: 700;
         position: relative;
+        .plus {
+          position: absolute;
+          right: 0px;
+          top: 50%;
+          transform: translateY(-50%);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            width: 32px;
+            height: 32px;
+          }
+        }
         .icon {
           position: absolute;
           left: -15px;

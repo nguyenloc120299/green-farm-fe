@@ -45,7 +45,7 @@ const LayoutStyle: any = styled.div`
   .main-page {
     max-width: 478px;
     width: 100%;
-    height: 100%;
+    height: 768px;
     width: 100%;
     background: url(${(props: any) => props.bg});
     background-position: center;

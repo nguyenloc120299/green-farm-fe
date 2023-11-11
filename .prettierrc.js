@@ -8,6 +8,6 @@ module.exports = {
   singleQuote: true,
   printWidth: 80,
   jsxSingleQuote: true,
-  plugins: ['prettier-plugin-tailwindcss'],
-  
+
+
 }

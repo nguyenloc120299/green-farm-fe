@@ -4,6 +4,7 @@ import ButtonCustom from 'components/elements/Button'
 import { ColorConstants } from 'globalStyles/color'
 import { useState } from 'react'
 import { styled } from 'styled-components'
+import btn from "assets/mipmap-xxxhdpi-v4/invitation_tx_button_sel.png"
 enum TypeForm {
   LOGIN = 'LOGIN',
   REGISTER = 'REGISTER'
@@ -18,14 +19,22 @@ const LoginMain = () => {
             <ArrowLeftOutlined onClick={() => setTypeForm(null)} />
             <h3>Đăng nhập</h3>
           </div>
-          <Form.Item>
-            <Input placeholder='Email của bạn' />
+          <Form.Item >
+            <Input autoComplete="off" placeholder='Email của bạn' value={''} />
           </Form.Item>
           <Form.Item>
-            <Input placeholder='Mật khẩu của bạn' type='password' />
+            <Input autoComplete="off" placeholder='Mật khẩu của bạn' type='password' value={''} />
           </Form.Item>
           <Form.Item>
-            <ButtonCustom width={100}>Đăng nhập</ButtonCustom>
+            <div className='button-auth' >
+              <img src={btn} style={{ width: "80%" }} />
+              <div className='btn-name'>
+                <h3>
+                  Đăng nhập
+                </h3>
+
+              </div>
+            </div>
           </Form.Item>
         </Form>
       </LoginStyled>
@@ -40,16 +49,16 @@ const LoginMain = () => {
           </div>
 
           <Form.Item>
-            <Input placeholder='Email của bạn' />
+            <Input autoComplete="off" placeholder='Email của bạn' />
           </Form.Item>
           <Form.Item>
-            <Input placeholder='Mật khẩu của bạn' />
+            <Input autoComplete="off" placeholder='Mật khẩu của bạn' />
           </Form.Item>
           <Form.Item>
-            <Input placeholder='Nhập lại mật khẩu' />
+            <Input autoComplete="off" placeholder='Nhập lại mật khẩu' />
           </Form.Item>
           <Form.Item>
-            <Input placeholder='Mã giới thiệu' />
+            <Input autoComplete="off" placeholder='Mã giới thiệu' />
           </Form.Item>
           <Form.Item>
             <Form.Item>
@@ -57,7 +66,15 @@ const LoginMain = () => {
             </Form.Item>
           </Form.Item>
           <Form.Item>
-            <ButtonCustom width={100}>Đăng kí</ButtonCustom>
+            <div className='button-auth' >
+              <img src={btn} style={{ width: "80%" }} />
+              <div className='btn-name'>
+                <h3>
+                  Đăng Kí
+                </h3>
+
+              </div>
+            </div>
           </Form.Item>
         </Form>
       </LoginStyled>
@@ -67,15 +84,33 @@ const LoginMain = () => {
       <div className='form'>
         <h3>Chào mừng bạn đến GreenFarm</h3>
         <div className='options'>
-          <ButtonCustom width={100} onEvent={() => setTypeForm(TypeForm.LOGIN)}>
+          {/* <ButtonCustom width={100} onEvent={() => setTypeForm(TypeForm.LOGIN)}>
             Đăng nhập
-          </ButtonCustom>
-          <ButtonCustom
+          </ButtonCustom> */}
+          {/* <ButtonCustom
             width={100}
             onEvent={() => setTypeForm(TypeForm.REGISTER)}
           >
             Đăng kí
-          </ButtonCustom>
+          </ButtonCustom> */}
+          <div className='button-auth' onClick={() => setTypeForm(TypeForm.LOGIN)}>
+            <img src={btn} style={{ width: "80%" }} />
+            <div className='btn-name'>
+              <h3>
+                Đăng nhập
+              </h3>
+
+            </div>
+          </div>
+          <div className='button-auth' onClick={() => setTypeForm(TypeForm.REGISTER)}>
+            <div className='btn-name'>
+              <h3>
+                Đăng Kí
+              </h3>
+
+            </div>
+            <img src={btn} style={{ width: "80%" }} />
+          </div>
         </div>
       </div>
     </LoginStyled>
@@ -102,7 +137,24 @@ const LoginStyled = styled.div`
       padding: 2.625px;
       background-color: ${ColorConstants.bg_main_2};
       padding: 25px 10px;
-
+      .button-auth{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .btn-name{
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%,-50%);
+          h3{
+            color: #fff;
+          }
+        }
+        img{
+          width: 80%;
+        }
+      }
       .form-header-title {
         display: flex;
         justify-content: center;
@@ -125,13 +177,18 @@ const LoginStyled = styled.div`
         }
       }
       .ant-input {
-        min-height: 40px;
+          height: 60px;
+          border-radius: 20px;
+          border: 3px solid #222;
+          background: #888;
+          color: #fff;
+          font-weight: 700;
         &::placeholder {
-          color: #999;
-          font-weight: 500;
+          color: #ccc;
+          font-weight: 700;
         }
         &:focus {
-          border: none;
+          border: 3px solid #222;
           outline: none;
           box-shadow: none;
         }

@@ -3,7 +3,8 @@ import { IS_OPEN } from "contants";
 import { useFnOpen, useOpen } from "hooks/useOpen";
 import money from "assets/image/money.png";
 import { styled } from "styled-components";
-
+import close from 'assets/mipmap-xxxhdpi-v4/home_dialog_close.png'
+import withrawIcon from "assets/mipmap-xxxhdpi-v4/withdrawal_button_nor.png"
 const ModalWithDraw = () => {
   const isModalOpen = useOpen(IS_OPEN.WITHDRAW);
   const { onOpen } = useFnOpen();
@@ -18,6 +19,7 @@ const ModalWithDraw = () => {
         })
       }
       footer={null}
+      width={450}
     >
       <div className="box-balance">
         <div className="text-balance">Số dư của tôi</div>
@@ -38,7 +40,14 @@ const ModalWithDraw = () => {
         <div className="withdrawal-method">Phương thức rút tiền</div>
       </div>
       <div className="flex justify-center">
-        <Button className="btn-withdraw">Rút tất cả</Button>
+        <div className="btn-withdraw">
+          <img src={withrawIcon} />
+          <div className="btn-name">
+            <h3>
+              Rút tất cả
+            </h3>
+          </div>
+        </div>
       </div>
       <div className="policy-withdraw">
         <div>Quy tắc rút tiền</div>
@@ -65,61 +74,51 @@ export default ModalWithDraw;
 
 const ModalWithDrawStyled = styled(Modal)`
   width: 100%;
-  min-height: 100vh;
+  min-height: 100vh;  
   max-width: 100%;
-  .ant-modal-close {
-    top: 5px;
-    right: 5px;
+ .ant-modal-close {
+    top: 0px;
+    right: 0px;
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background: #fff;
+    background: url(${close});
+    background-size: 100%;
     span {
-      font-size: 18px;
-      color: #aaa;
-      font-weight: 700;
+      display: none;
     }
   }
   .ant-modal-content {
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
     border-radius: 0;
     background-color: #9fd7ec;
     padding: 50px 20px;
-    .ant-btn {
-      margin-top: -40px;
-      &.btn-withdraw {
+    .btn-withdraw{
+      position: relative;
+      margin-top: -15%;
+      width: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img{
+        width: 100%;
+      }
+      .btn-name{
+        position: absolute;
+        left: 50%;
+        top:50%;
+        transform: translate(-50%,-50%);
         display: flex;
         justify-content: center;
         align-items: center;
-        max-width: 175px;
-        height: 40px;
-        width: 100%;
-        border-radius: 30px;
-        color: #fff;
-        text-shadow: 0 1px 3px #000;
-        text-align: center;
-        background: radial-gradient(circle, #ffc000, #ffc000);
-        border-top: 4px ridge #fff;
-        border-left: 4px groove #fff;
-        border-right: 4px ridge #fff;
-        border-bottom: 4px groove #fff;
-        box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
-        &:focus {
-          border-top: 4px ridge #fff;
-          border-left: 4px groove #fff;
-          border-right: 4px ridge #fff;
-          border-bottom: 4px groove #fff;
-          box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
-        }
-        &:active {
-          border-top: 4px ridge #fff;
-          border-left: 4px groove #fff;
-          border-right: 4px ridge #fff;
-          border-bottom: 4px groove #fff;
-          box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
+        h3{
+          font-size: 20px;
+          font-weight: 700;
+          color: #fff;
         }
       }
+        
     }
     .policy-withdraw {
       margin-top: 30px;

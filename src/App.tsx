@@ -9,6 +9,11 @@ function App() {
         token: {
           fontFamily: "Chakra Petch",
         },
+        components: {
+          Input: {
+
+          }
+        }
       }}
     >
       <div className="App">

@@ -54,7 +54,12 @@ const MainFooter = () => {
             <div className="text">Mời bạn bè</div>
           </div>
         </div>
-        <div className="box">
+        <div className="box" onClick={() =>
+          onOpen({
+            type: IS_OPEN.RANKING,
+            value: true,
+          })
+        }>
           <div className="col">
             <img src={rank} />
             <div className="text">Xếp hạng</div>

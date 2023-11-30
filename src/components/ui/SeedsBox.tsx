@@ -5,18 +5,18 @@ import corn from 'assets/mipmap-xxxhdpi-v4/home_house_npc1.png'
 import rice from 'assets/mipmap-xxxhdpi-v4/home_house_npc2.png'
 import { useFnOpen, useOpen } from 'hooks/useOpen'
 import useClickOutSide from 'hooks/useClickOutSide'
-import { IS_OPEN } from 'contants'
+import { TYPE_MODAL } from 'contants'
 
 const SeedsBox = () => {
   const refDisplay = useRef<any>()
   const { onOpen } = useFnOpen()
-  const isOpen = useOpen(IS_OPEN.SEEDS)
+  const isOpen = useOpen(TYPE_MODAL.SEEDS)
   useClickOutSide(
     refDisplay,
     () =>
       isOpen &&
       onOpen({
-        type: IS_OPEN.SEEDS,
+        type: TYPE_MODAL.SEEDS,
         value: false
       })
   )
@@ -46,7 +46,7 @@ const SeedsBox = () => {
 
 export default SeedsBox
 const SeedBoxStyles = styled.div`
-  position: fixed;
+  position: absolute;
   top: 10%;
   left: 0;
   width: 100%;

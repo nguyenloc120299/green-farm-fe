@@ -1,6 +1,6 @@
 import { Modal } from "antd";
 import WheelComponent from "components/objects/WeelComponent";
-import { IS_OPEN } from "contants";
+import { TYPE_MODAL } from "contants";
 import { useFnOpen, useOpen } from "hooks/useOpen";
 import close from 'assets/mipmap-xxxhdpi-v4/home_dialog_close.png'
 import { styled } from "styled-components";
@@ -16,9 +16,9 @@ const ModalLuckyWeel = () => {
     "#c5a275",
   ];
   const onFinished = (winner: any) => {
-    console.log(winner);
+    console.log("winner", winner);
   };
-  const isModalOpen = useOpen(IS_OPEN.LUCKYWEEL);
+  const isModalOpen = useOpen(TYPE_MODAL.LUCKYWEEL);
   const { onOpen } = useFnOpen();
 
   return (
@@ -29,7 +29,7 @@ const ModalLuckyWeel = () => {
       width={350}
       onCancel={() =>
         onOpen({
-          type: IS_OPEN.LUCKYWEEL,
+          type: TYPE_MODAL.LUCKYWEEL,
           value: false,
         })
       }
@@ -46,7 +46,7 @@ const ModalLuckyWeel = () => {
         upDuration={500}
         downDuration={600}
         fontFamily=""
-        winningSegment={"🍊"}
+        winningSegment={"🎰"}
       />
     </ModalLuckyWeelStyled>
   );

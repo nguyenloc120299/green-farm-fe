@@ -1,5 +1,5 @@
 import logo_bg from 'assets/mipmap-xxxhdpi-v4/unlock_people_bg.png'
-import { IS_OPEN } from 'contants'
+import { TYPE_MODAL } from 'contants'
 import { useFnOpen, useOpen } from 'hooks/useOpen'
 import styled from 'styled-components'
 import ModalBase from './ModalBaseCustom'
@@ -7,13 +7,13 @@ import Avatar from 'components/elements/Avatar'
 import btnBg from "assets/mipmap-xxxhdpi-v4/time_reward_btn_sel.png"
 import coin from 'assets/image/dollar.png'
 const ModalRanking = () => {
-  const isModalOpen = useOpen(IS_OPEN.RANKING)
+  const isModalOpen = useOpen(TYPE_MODAL.RANKING)
   const { onOpen } = useFnOpen()
   return (
     <ModalBase
       onCancel={() =>
         onOpen({
-          type: IS_OPEN.RANKING,
+          type: TYPE_MODAL.RANKING,
           value: false
         })
       }

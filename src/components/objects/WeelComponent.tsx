@@ -18,7 +18,7 @@ interface WeelType {
 const WheelComponent = ({
   segments,
   segColors,
-  winningSegment,
+  winningSegment = "",
   onFinished,
   primaryColor = 'black',
   contrastColor = 'white',
@@ -29,6 +29,8 @@ const WheelComponent = ({
   downDuration = 1000,
   fontFamily = 'Montserrat'
 }: WeelType) => {
+
+
   let currentSegment = ''
   let isStarted = false
   const [isFinished, setFinished] = useState(false)
@@ -52,6 +54,7 @@ const WheelComponent = ({
     }, 0)
   }, [])
   const wheelInit = () => {
+    clearInterval(timerHandle)
     initCanvas()
     wheelDraw()
   }
@@ -75,6 +78,7 @@ const WheelComponent = ({
 
   const spin = () => {
     isStarted = true
+    clearInterval(timerHandle)
     if (timerHandle === 0) {
       spinStart = new Date().getTime()
       // maxSpeed = Math.PI / ((segments.length*2) + Math.random())
@@ -95,6 +99,7 @@ const WheelComponent = ({
       angleDelta = maxSpeed * Math.sin((progress * Math.PI) / 2)
     } else {
       if (winningSegment) {
+
         if (currentSegment === winningSegment && frames > segments.length) {
           progress = duration / upTime
           angleDelta =
@@ -198,6 +203,18 @@ const WheelComponent = ({
     ctx.lineTo(centerX, centerY - 40)
     ctx.closePath()
     ctx.fill()
+    const change = angleCurrent + Math.PI / 2
+    let i =
+      segments.length -
+      Math.floor((change / (Math.PI * 2)) * segments.length) -
+      1
+    if (i < 0) i = i + segments.length
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'middle'
+    ctx.fillStyle = primaryColor
+    ctx.font = 'bold 1.5em ' + fontFamily
+    currentSegment = segments[i]
+    isStarted && ctx.fillText(currentSegment, centerX + 10, centerY + size + 50)
   }
   const clear = () => {
     const ctx = canvasContext

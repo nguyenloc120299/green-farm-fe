@@ -1,5 +1,5 @@
 import { Modal } from 'antd'
-import { IS_OPEN } from 'contants'
+import { TYPE_MODAL } from 'contants'
 import { useFnOpen, useOpen } from 'hooks/useOpen'
 import React from 'react'
 import { styled } from 'styled-components'
@@ -9,13 +9,13 @@ import close from 'assets/mipmap-xxxhdpi-v4/home_dialog_close.png'
 import reward from 'assets/mipmap-xxxhdpi-v4/offline_reward_chart.png'
 import btn from 'assets/mipmap-xxxhdpi-v4/time_reward_btn_sel.png'
 const ModalDeposit = () => {
-  const isModalOpen = useOpen(IS_OPEN.DEPOSIT)
+  const isModalOpen = useOpen(TYPE_MODAL.DEPOSIT)
   const { onOpen } = useFnOpen()
   return (
     <ModalDepositStyled
       onCancel={() =>
         onOpen({
-          type: IS_OPEN.DEPOSIT,
+          type: TYPE_MODAL.DEPOSIT,
           value: false
         })
       }

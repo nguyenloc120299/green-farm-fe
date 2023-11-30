@@ -1,7 +1,7 @@
 import Land from "components/objects/Land";
 import Mark from "components/objects/Mark";
 import Seed from "components/objects/Seed";
-import { IS_OPEN } from "contants";
+import { TYPE_MODAL } from "contants";
 import { useFnOpen } from "hooks/useOpen";
 import havertIcon from "assets/mipmap-xxxhdpi-v4/home_qipao_1.png";
 import { lands } from "types/land";
@@ -18,7 +18,7 @@ const Field = () => {
           key={index}
           onClick={() => {
             onOpen({
-              type: IS_OPEN.SEEDS,
+              type: TYPE_MODAL.SEEDS,
               value: true,
             });
           }}

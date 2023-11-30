@@ -5,7 +5,7 @@ import mision from "assets/image/target.png";
 import man from "assets/image/man.png";
 import rank from "assets/image/ranking.png";
 import { useFnOpen } from "hooks/useOpen";
-import { IS_OPEN } from "contants";
+import { TYPE_MODAL } from "contants";
 import { ColorConstants } from "globalStyles/color";
 const MainFooter = () => {
   const { onOpen } = useFnOpen();
@@ -16,7 +16,7 @@ const MainFooter = () => {
           className="box"
           onClick={() =>
             onOpen({
-              type: IS_OPEN.GAMES,
+              type: TYPE_MODAL.GAMES,
               value: true,
             })
           }
@@ -30,7 +30,7 @@ const MainFooter = () => {
           className="box"
           onClick={() =>
             onOpen({
-              type: IS_OPEN.MISSION,
+              type: TYPE_MODAL.MISSION,
               value: true,
             })
           }
@@ -44,7 +44,7 @@ const MainFooter = () => {
           className="box"
           onClick={() =>
             onOpen({
-              type: IS_OPEN.REFERRAL,
+              type: TYPE_MODAL.REFERRAL,
               value: true,
             })
           }
@@ -56,7 +56,7 @@ const MainFooter = () => {
         </div>
         <div className="box" onClick={() =>
           onOpen({
-            type: IS_OPEN.RANKING,
+            type: TYPE_MODAL.RANKING,
             value: true,
           })
         }>

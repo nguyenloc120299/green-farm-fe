@@ -3,7 +3,7 @@ import money from 'assets/image/money.png'
 import dollar from 'assets/image/dollar.png'
 import plus from 'assets/mipmap-xxxhdpi-v4/home_add_icon.png'
 import { useFnOpen } from 'hooks/useOpen'
-import { IS_OPEN } from 'contants'
+import { TYPE_MODAL } from 'contants'
 import Avatar from 'components/elements/Avatar'
 import withdraw from "assets/mipmap-xxxhdpi-v4/home_tx_icon.png"
 const MainHeader = () => {
@@ -16,7 +16,7 @@ const MainHeader = () => {
             <Avatar
               onHandle={() =>
                 onOpen({
-                  type: IS_OPEN.PROFILE,
+                  type: TYPE_MODAL.PROFILE,
                   value: true
                 })
               }
@@ -30,7 +30,7 @@ const MainHeader = () => {
             <div
               className='plus'
               onClick={() => onOpen({
-                type: IS_OPEN.WITHDRAW,
+                type: TYPE_MODAL.WITHDRAW,
                 value: true
               })}
             >
@@ -48,7 +48,7 @@ const MainHeader = () => {
               className='plus'
               onClick={() =>
                 onOpen({
-                  type: IS_OPEN.DEPOSIT,
+                  type: TYPE_MODAL.DEPOSIT,
                   value: true
                 })
               }

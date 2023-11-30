@@ -1,19 +1,33 @@
 import { ArrowLeftOutlined } from '@ant-design/icons'
-import { Checkbox, Form, Input } from 'antd'
-import ButtonCustom from 'components/elements/Button'
+import { Button, Checkbox, Form, Input, message } from 'antd'
 import { ColorConstants } from 'globalStyles/color'
 import { useState } from 'react'
 import { styled } from 'styled-components'
 import btn from "assets/mipmap-xxxhdpi-v4/invitation_tx_button_sel.png"
+import { FORM_REGISTER } from 'types/auth'
+import Loading from 'components/elements/Loading'
+import { useFnLoading } from 'hooks/useLoading'
+import { TYPE_LOADING } from 'contants'
 enum TypeForm {
   LOGIN = 'LOGIN',
   REGISTER = 'REGISTER'
 }
 const LoginMain = () => {
   const [typeForm, setTypeForm] = useState<TypeForm | null>(null)
+  const [loading, setLoading] = useState(false)
+  const { onLoading } = useFnLoading()
+  const handleRegister = (form: FORM_REGISTER) => {
+    onLoading({
+      type: TYPE_LOADING.APP,
+      value: true
+    })
+
+  }
+
   if (typeForm === TypeForm.LOGIN)
     return (
       <LoginStyled className='login-page'>
+
         <Form className='form'>
           <div className='form-header-title'>
             <ArrowLeftOutlined onClick={() => setTypeForm(null)} />
@@ -41,32 +55,30 @@ const LoginMain = () => {
     )
   else if (typeForm === TypeForm.REGISTER)
     return (
-      <LoginStyled className='login-page'>
-        <Form className='form'>
+      <LoginStyled className='login-page' >
+        <Form<FORM_REGISTER> className='form' onFinish={handleRegister}>
           <div className='form-header-title'>
             <ArrowLeftOutlined onClick={() => setTypeForm(null)} />
             <h3>Đăng kí</h3>
           </div>
 
-          <Form.Item>
-            <Input autoComplete="off" placeholder='Email của bạn' />
+          <Form.Item name='account_name'>
+            <Input autoComplete="off" placeholder='Tên tài khoản' />
           </Form.Item>
-          <Form.Item>
+          <Form.Item name="password">
             <Input autoComplete="off" placeholder='Mật khẩu của bạn' />
           </Form.Item>
-          <Form.Item>
+          <Form.Item name="confirm_password">
             <Input autoComplete="off" placeholder='Nhập lại mật khẩu' />
           </Form.Item>
-          <Form.Item>
+          <Form.Item name="code_invite">
             <Input autoComplete="off" placeholder='Mã giới thiệu' />
           </Form.Item>
-          <Form.Item>
-            <Form.Item>
-              <Checkbox>Chấp nhận với điều khoản của trò chơi</Checkbox>
-            </Form.Item>
+          <Form.Item name='isAccept'>
+            <Checkbox  >Chấp nhận với điều khoản của trò chơi</Checkbox>
           </Form.Item>
           <Form.Item>
-            <div className='button-auth' >
+            <button type='submit' className='button-auth' >
               <img src={btn} style={{ width: "80%" }} />
               <div className='btn-name'>
                 <h3>
@@ -74,25 +86,17 @@ const LoginMain = () => {
                 </h3>
 
               </div>
-            </div>
+            </button>
           </Form.Item>
         </Form>
       </LoginStyled>
     )
   return (
     <LoginStyled className='login-page'>
+
       <div className='form'>
         <h3>Chào mừng bạn đến GreenFarm</h3>
         <div className='options'>
-          {/* <ButtonCustom width={100} onEvent={() => setTypeForm(TypeForm.LOGIN)}>
-            Đăng nhập
-          </ButtonCustom> */}
-          {/* <ButtonCustom
-            width={100}
-            onEvent={() => setTypeForm(TypeForm.REGISTER)}
-          >
-            Đăng kí
-          </ButtonCustom> */}
           <div className='button-auth' onClick={() => setTypeForm(TypeForm.LOGIN)}>
             <img src={btn} style={{ width: "80%" }} />
             <div className='btn-name'>
@@ -120,6 +124,7 @@ const LoginMain = () => {
 export default LoginMain
 const LoginStyled = styled.div`
   &.login-page {
+    
     position: absolute;
     max-width: 375px;
     width: 100%;
@@ -136,7 +141,7 @@ const LoginStyled = styled.div`
       border-radius: 15px;
       padding: 2.625px;
       background-color: ${ColorConstants.bg_main_2};
-      padding: 25px 10px;
+      padding: 0 15px;
       .button-auth{
         position: relative;
         display: flex;
@@ -153,6 +158,7 @@ const LoginStyled = styled.div`
         }
         img{
           width: 80%;
+          height: 80%;
         }
       }
       .form-header-title {
@@ -177,7 +183,7 @@ const LoginStyled = styled.div`
         }
       }
       .ant-input {
-          height: 60px;
+          height: 50px;
           border-radius: 20px;
           border: 3px solid #222;
           background: #888;
@@ -197,6 +203,7 @@ const LoginStyled = styled.div`
         display: flex;
         flex-direction: column;
         gap: 20px;
+        padding: 10px 0;
       }
     }
   }

@@ -1,5 +1,5 @@
 import { Progress } from "antd";
-import { IS_OPEN } from "contants";
+import { TYPE_MODAL } from "contants";
 import { useFnOpen, useOpen } from "hooks/useOpen";
 import bg_claim from "assets/mipmap-xxxhdpi-v4/time_reward_btn_sel.png";
 import logo_bg from "assets/mipmap-xxxhdpi-v4/unlock_people_bg.png";
@@ -7,13 +7,13 @@ import styled from "styled-components";
 import sickle from "assets/icon/sickle.png";
 import ModalBase from "./ModalBaseCustom";
 const ModalMission = () => {
-  const isModalOpen = useOpen(IS_OPEN.MISSION);
+  const isModalOpen = useOpen(TYPE_MODAL.MISSION);
   const { onOpen } = useFnOpen();
   return (
     <ModalBase
       onCancel={() =>
         onOpen({
-          type: IS_OPEN.MISSION,
+          type: TYPE_MODAL.MISSION,
           value: false,
         })
       }

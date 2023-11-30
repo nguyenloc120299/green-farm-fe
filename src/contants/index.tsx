@@ -1,4 +1,4 @@
-export const IS_OPEN = {
+export const TYPE_MODAL = {
   SEEDS: "SEEDS",
   MISSION: "MISSION",
   REFERRAL: "REFERRAL",
@@ -9,5 +9,10 @@ export const IS_OPEN = {
   LOTTERY: "LOTTERY",
   TICKETS: "TICKETS",
   DEPOSIT: "DEPOSIT",
-  RANKING: "RANKING"
+  RANKING: "RANKING",
+  UNLOCK_LAND: "UNLOCK_LAND"
 };
+
+export const TYPE_LOADING = {
+  APP: 'APP'
+}

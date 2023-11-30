@@ -1,4 +1,5 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
+import { getApiKey, getAuhorization } from './core'
 
 const baseURL = ''
 
@@ -7,7 +8,9 @@ const createInstance = () => {
     baseURL: baseURL,
     headers: {
       'Content-Type': 'application/json',
-      Accept: 'application/json'
+      Accept: 'application/json',
+    "Authorization":`Bearer ${getAuhorization().accessToken}`,
+    "x-api-key":getApiKey()
     }
   })
 }

@@ -1,12 +1,13 @@
 import { Button, Modal } from "antd";
-import { IS_OPEN } from "contants";
+import { TYPE_MODAL } from "contants";
 import { useFnOpen, useOpen } from "hooks/useOpen";
 import money from "assets/image/money.png";
 import { styled } from "styled-components";
 import close from 'assets/mipmap-xxxhdpi-v4/home_dialog_close.png'
 import withrawIcon from "assets/mipmap-xxxhdpi-v4/withdrawal_button_nor.png"
+import withdrawTypeRight from 'assets/mipmap-xxxhdpi-v4/withdrawal_type_right.png'
 const ModalWithDraw = () => {
-  const isModalOpen = useOpen(IS_OPEN.WITHDRAW);
+  const isModalOpen = useOpen(TYPE_MODAL.WITHDRAW);
   const { onOpen } = useFnOpen();
   return (
     <ModalWithDrawStyled
@@ -14,7 +15,7 @@ const ModalWithDraw = () => {
       open={isModalOpen}
       onCancel={() =>
         onOpen({
-          type: IS_OPEN.WITHDRAW,
+          type: TYPE_MODAL.WITHDRAW,
           value: false,
         })
       }
@@ -33,11 +34,21 @@ const ModalWithDraw = () => {
           <div className="text-1">Rút tiền (1000 điểm)</div>
           <div className="balance">1000đ</div>
           <div className="text-des">
-            Số điểm hoạt động hiện tại của bạn là 1000đ với tỉ lệ rút tiền 1:1
+            Số điểm hoạt động hiện tại của bạn là 1000 điểm với tỉ lệ rút tiền 1:1
             <span> Tăng điểm</span>
           </div>
         </div>
-        <div className="withdrawal-method">Phương thức rút tiền</div>
+        <div className="withdrawal-method">
+          <span>
+            Phương thức rút tiền
+          </span>
+          <div className="flex items-center " style={{
+            gap: "10px"
+          }}>
+            Momo
+            <img src={withdrawTypeRight} width={10} />
+          </div>
+        </div>
       </div>
       <div className="flex justify-center">
         <div className="btn-withdraw">
@@ -63,6 +74,7 @@ const ModalWithDraw = () => {
             </li>
             <li>3. Bạn được rút tối đa 1 lần/ngày</li>
             <li>4. Số tiền rút tối thiểu là 10.000 đ</li>
+            <li>5. Tỉ lệ rút tiền tỉ lệ 1:1 với số điểm hoạt động của bạn hiện có.</li>
           </ul>
         </div>
       </div>
@@ -136,17 +148,22 @@ const ModalWithDrawStyled = styled(Modal)`
       margin-bottom: 15px;
       box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
       position: relative;
+      font-size: 16px;
+      font-weight: 500;
       .withdrawal-method {
         background: #d1d776;
         width: 100%;
         border-radius: 10px;
-        border: 2px solid #bbb807;
+        border: 2px solid #bbb807;  
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 10px;
-        color: #ba5c09;
+        color: #ec1b1b;
         font-weight: 700;
+        img{
+          width: 8px;
+        }
       }
       .balance-withdraw {
         min-height: 50px;
@@ -157,24 +174,25 @@ const ModalWithDrawStyled = styled(Modal)`
         margin-bottom: 10px;
         .text-1 {
           text-align: center;
-          font-weight: 500;
+          font-weight: 700;
+          font-size: 20px;
         }
         .balance {
           text-align: center;
-          font-size: 20px;
+          font-size: 24px;
           font-weight: 700;
-          color: #d84040;
+          color: #ec1b1b;
         }
         .text-des {
-          font-size: 12px;
-          font-weight: 500;
+          font-size: 16px;
+          font-weight: 700;
           color: #0a485d;
           border: 1px dashed #134150;
           border-radius: 10px;
           padding: 10px;
           span {
-            color: #d84040;
-            font-weight: 500;
+            color: #ec1b1b  ;
+            font-weight: 700;
             cursor: pointer;
           }
         }
@@ -189,7 +207,7 @@ const ModalWithDrawStyled = styled(Modal)`
         gap: 10px;
         font-weight: 700;
         font-size: 20px;
-        color: #d84040;
+        color: #ec1b1b;
         img {
           width: 30px;
         }

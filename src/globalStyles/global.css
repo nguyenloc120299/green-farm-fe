@@ -4,6 +4,7 @@ body {
     box-sizing: border-box;
     font-family: "Chakra Petch", sans-serif;
     cursor: pointer;
+    background-color: rgb(250, 226, 198);
 }
 
 body::-webkit-scrollbar {
@@ -14,6 +15,13 @@ input:-webkit-autofill {
     color: unset !important;
     background: unset !important;
 }
+button {
+    box-shadow: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
 .flex {
     display: flex;
 }

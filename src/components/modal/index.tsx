@@ -9,6 +9,7 @@ import ModalLotery from "./ModalLotery";
 import ModalTicket from "./ModalTicket";
 import ModalDeposit from "./ModalDeposit";
 import ModalRanking from "./ModalRanking";
+import ModalUnlockLand from "./ModalUnlockLand";
 
 const Modals = () => {
   return (
@@ -22,7 +23,8 @@ const Modals = () => {
       <ModalLotery />
       <ModalTicket />
       <ModalDeposit />
-      <ModalRanking/>
+      <ModalRanking />
+      <ModalUnlockLand />
     </>
   );
 };

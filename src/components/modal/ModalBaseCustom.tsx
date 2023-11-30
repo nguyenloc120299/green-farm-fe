@@ -1,6 +1,4 @@
-import { Button, Modal, Progress } from 'antd'
-// import { IS_OPEN } from "contants";
-// import { useFnOpen, useOpen } from "hooks/useOpen";
+import { Modal } from 'antd'
 import { ReactNode } from 'react'
 import styled from 'styled-components'
 import bg from 'assets/mipmap-xxxhdpi-v4/home_dialog_bg.9.png'
@@ -49,18 +47,21 @@ const ModalBase = ({
 }
 
 export default ModalBase
+
+
 const ModalMissionStyled = styled(Modal)`
+    
     .ant-modal-close {
-    top: 0px;
-    right: 0px;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: url(${close});
-    background-size: 100%;
-    span {
-      display: none;
-    }
+      top: 0px;
+      right: 0px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: url(${close});
+      background-size: 100%;
+      span {
+        display: none;
+      }
   }
   .ant-modal-content {
     background-color: transparent;

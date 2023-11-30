@@ -1,67 +1,50 @@
-import { Button } from "antd";
-import React from "react";
-import { styled } from "styled-components";
-interface Props_Style {
-  width: number;
-}
-interface Props_Type extends Props_Style {
-  children?: React.ReactNode;
-  onEvent?: (params: any | null) => void;
-}
-const ButtonCustom = ({ width, children, onEvent }: Props_Type) => {
-  return (
-    <ButtonCustomStyled width={width} type="default" onClick={onEvent}>
-      {children}
-    </ButtonCustomStyled>
-  );
-};
+import styled from 'styled-components'
 
-export default ButtonCustom;
+interface Props {
+    bgImg: string
+    title: string
+    width?: number
+    height?: number
+    onEvent: () => void
+}
 
-const ButtonCustomStyled = styled(Button)<Props_Style>`
-  &.ant-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 700;
-    padding: 20px;
-    border-radius: 30px;
-    color: #ffc000;
-    text-shadow: 0 1px 3px #000;
-    width: 100%;
-    text-align: center;
-    background: radial-gradient(circle, #078c33, #078c33);
-    border-top: 4px ridge #ffb000;
-    border-left: 4px groove #ffb000;
-    border-right: 4px ridge #ffb000;
-    border-bottom: 4px groove #ffb000;
-    box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
-    &:focus {
-      border-color: #ffb000 !important;
-      color: #ffb000 !important;
-      border-top: 4px ridge #ffb000;
-      border-left: 4px groove #ffb000;
-      border-right: 4px ridge #ffb000;
-      border-bottom: 4px groove #ffb000;
-      box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
+const ButtonImage = ({ bgImg, width, height, title = '', onEvent }: Props) => {
+    return (
+        <ButtonStyled width={width} height={height} onClick={onEvent}>
+            <img src={bgImg} />
+            <div className='text-title'>
+                <h4>
+                    {title}
+                </h4>
+            </div>
+        </ButtonStyled>
+    )
+}
+
+export default ButtonImage
+
+const ButtonStyled = styled.div<{ width?: number; height?: number }>`
+    cursor: pointer;
+    width: ${(props) => `${props.width}px` || '100%'};
+    height: ${(props) => `${props.height}px` || '100%'};
+    position: relative;
+    .text-title {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            h4 {
+              font-size: 14px;
+              font-weight: 700;
+              color: #fff;
+            }
+          }
+    img{
+        width:100%;
+        height:100%
     }
-    &:active {
-      border-color: #ffb000 !important;
-      color: #ffb000 !important;
-      border-top: 4px ridge #ffb000;
-      border-left: 4px groove #ffb000;
-      border-right: 4px ridge #ffb000;
-      border-bottom: 4px groove #ffb000;
-      box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
-    }
-    &:hover {
-      border-color: #ffb000 !important;
-      color: #ffb000 !important;
-      border-top: 4px ridge #ffb000;
-      border-left: 4px groove #ffb000;
-      border-right: 4px ridge #ffb000;
-      border-bottom: 4px groove #ffb000;
-      box-shadow: inset 0px 0px 5px 3px rgba(1, 1, 1, 0.3);
-    }
-  }
-`;
+`

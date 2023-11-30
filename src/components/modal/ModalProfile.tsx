@@ -1,6 +1,6 @@
 import { Button, List, Modal } from 'antd'
 import Avatar from 'components/elements/Avatar'
-import { IS_OPEN } from 'contants'
+import { TYPE_MODAL } from 'contants'
 import { useFnOpen, useOpen } from 'hooks/useOpen'
 import money from 'assets/image/money.png'
 import dollar from 'assets/image/dollar.png'
@@ -13,7 +13,7 @@ import close from 'assets/mipmap-xxxhdpi-v4/home_dialog_close.png'
 import { RightOutlined } from '@ant-design/icons'
 
 const ModalProfile = () => {
-  const isModalOpen = useOpen(IS_OPEN.PROFILE)
+  const isModalOpen = useOpen(TYPE_MODAL.PROFILE)
   const { onOpen } = useFnOpen()
   return (
     <ModalProfileStyled
@@ -21,11 +21,12 @@ const ModalProfile = () => {
       open={isModalOpen}
       onCancel={() =>
         onOpen({
-          type: IS_OPEN.PROFILE,
+          type: TYPE_MODAL.PROFILE,
           value: false
         })
       }
       footer={null}
+      width={450}
     >
       <div className='info-user'>
         <Avatar />

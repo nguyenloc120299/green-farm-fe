@@ -8,27 +8,30 @@ import useContentResizer from 'hooks/useContentResizer'
 import SeedsBox from 'components/ui/SeedsBox'
 import Modals from 'components/modal'
 import LoginMain from 'components/ui/LoginMain'
+import Loading from 'components/elements/Loading'
 const Layout = () => {
   const height = useContentResizer()
-  const isLogin = true
+  const isLogin = false
   return (
     <LayoutStyle bg={bg} height={height}>
       <Modals />
-      {isLogin ? (
-        <div className='main-page'>
-          <SeedsBox />
+      <Loading />
+      <div className='main-page'>
+        {
+          isLogin ?
+            <>
+              <SeedsBox />
+              <MainHeader />
+              <div className='farm'>
+                <Outlet />
+              </div>
+              <MainFooter />
+            </>
+            :
+            <LoginMain />
+        }
 
-          <MainHeader />
-          <div className='farm'>
-            <Outlet />
-          </div>
-          <MainFooter />
-        </div>
-      ) : (
-        <div className='main-page'>
-          <LoginMain />
-        </div>
-      )}
+      </div>
     </LayoutStyle>
   )
 }
@@ -44,8 +47,7 @@ const LayoutStyle: any = styled.div`
   overflow: hidden;
   .main-page {
     max-width: 478px;
-    width: 100%;
-    height: 768px;
+    height: ${(props: any) => props?.height}px;
     width: 100%;
     background: url(${(props: any) => props.bg});
     background-position: center;

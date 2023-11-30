@@ -2,9 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import mark from 'assets/image/mark.png'
 import grass from 'assets/image/grass.png'
+import { useFnOpen } from 'hooks/useOpen'
+import { TYPE_MODAL } from 'contants'
 const Mark = () => {
+  const { onOpen } = useFnOpen()
   return (
-    <MarkStyled>
+    <MarkStyled onClick={() => onOpen({
+      type: TYPE_MODAL.UNLOCK_LAND,
+      value: true
+    })}>
       <div style={{ position: 'relative' }}>
         <img src={mark} alt='' style={{ zIndex: 99, }} />
         <div className='grass'>

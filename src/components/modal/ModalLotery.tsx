@@ -1,12 +1,12 @@
 import { Button, Modal } from "antd";
-import { IS_OPEN } from "contants";
+import { TYPE_MODAL } from "contants";
 import { useFnOpen, useOpen } from "hooks/useOpen";
 import close from 'assets/mipmap-xxxhdpi-v4/home_dialog_close.png'
 import thantai from "assets/image/thantai.png";
 import { styled } from "styled-components";
 
 const ModalLotery = () => {
-  const isModalOpen = useOpen(IS_OPEN.LOTTERY);
+  const isModalOpen = useOpen(TYPE_MODAL.LOTTERY);
   const { onOpen } = useFnOpen();
   return (
     <ModalLoteryStyled
@@ -16,7 +16,7 @@ const ModalLotery = () => {
       width={300}
       onCancel={() =>
         onOpen({
-          type: IS_OPEN.LOTTERY,
+          type: TYPE_MODAL.LOTTERY,
           value: false,
         })
       }
@@ -44,7 +44,7 @@ const ModalLotery = () => {
             className="btn-buy-ticket"
             onClick={() =>
               onOpen({
-                type: IS_OPEN.TICKETS,
+                type: TYPE_MODAL.TICKETS,
                 value: true,
               })
             }

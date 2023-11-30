@@ -1,17 +1,17 @@
 import { Modal } from "antd";
-import { IS_OPEN } from "contants";
+import { TYPE_MODAL } from "contants";
 import { useFnOpen, useOpen } from "hooks/useOpen";
 import React from "react";
 import { styled } from "styled-components";
 
 const ModalTicket = () => {
-  const isModalOpen = useOpen(IS_OPEN.TICKETS);
+  const isModalOpen = useOpen(TYPE_MODAL.TICKETS);
   const { onOpen } = useFnOpen();
   return (
     <ModalTicketStyled
       onCancel={() =>
         onOpen({
-          type: IS_OPEN.TICKETS,
+          type: TYPE_MODAL.TICKETS,
           value: false,
         })
       }

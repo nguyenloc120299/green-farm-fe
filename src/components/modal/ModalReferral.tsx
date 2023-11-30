@@ -1,5 +1,5 @@
 import { Modal } from 'antd'
-import { IS_OPEN } from 'contants'
+import { TYPE_MODAL } from 'contants'
 import { useFnOpen, useOpen } from 'hooks/useOpen'
 import withDrawBtnBg from 'assets/mipmap-xxxhdpi-v4/withdrawal_button_sel.png'
 import styled from 'styled-components'
@@ -8,7 +8,7 @@ import qz from 'assets/mipmap-xxxhdpi-v4/yq_gz_icon.png'
 import close from 'assets/mipmap-xxxhdpi-v4/home_dialog_close.png'
 import { ColorConstants } from 'globalStyles/color'
 const ModalReferral = () => {
-  const isModalOpen = useOpen(IS_OPEN.REFERRAL)
+  const isModalOpen = useOpen(TYPE_MODAL.REFERRAL)
   const { onOpen } = useFnOpen()
   return (
     <ModalReferralStyled
@@ -17,7 +17,7 @@ const ModalReferral = () => {
       width={350}
       onCancel={() =>
         onOpen({
-          type: IS_OPEN.REFERRAL,
+          type: TYPE_MODAL.REFERRAL,
           value: false
         })
       }

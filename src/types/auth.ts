@@ -1,5 +1,5 @@
 export interface FORM_REGISTER {
-    isAccept:boolean
+    isAccept:boolean 
     account_name:string,
     password:string,
     code_invite:string,

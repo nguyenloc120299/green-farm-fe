@@ -1,7 +1,7 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
 import { getApiKey, getAuhorization } from './core'
 
-const baseURL = ''
+const baseURL = process.env.REACT_APP_BASE_URL
 
 const createInstance = () => {
   return axios.create({

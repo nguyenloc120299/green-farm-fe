@@ -9,12 +9,14 @@ import SeedsBox from 'components/ui/SeedsBox'
 import Modals from 'components/modal'
 import LoginMain from 'components/ui/LoginMain'
 import Loading from 'components/elements/Loading'
+import BoxNotification from 'components/elements/BoxNotification'
 const Layout = () => {
   const height = useContentResizer()
   const isLogin = false
   return (
     <LayoutStyle bg={bg} height={height}>
       <Modals />
+      <BoxNotification />
       <Loading />
       <div className='main-page'>
         {

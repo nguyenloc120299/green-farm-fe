@@ -8,6 +8,8 @@ import { FORM_REGISTER } from 'types/auth'
 import Loading from 'components/elements/Loading'
 import { useFnLoading } from 'hooks/useLoading'
 import { TYPE_LOADING } from 'contants'
+import { signUp } from 'api/auth'
+import { StatusCode } from 'api/core'
 enum TypeForm {
   LOGIN = 'LOGIN',
   REGISTER = 'REGISTER'
@@ -16,12 +18,30 @@ const LoginMain = () => {
   const [typeForm, setTypeForm] = useState<TypeForm | null>(null)
   const [loading, setLoading] = useState(false)
   const { onLoading } = useFnLoading()
-  const handleRegister = (form: FORM_REGISTER) => {
+
+  const handleRegister = async (form: FORM_REGISTER) => {
     onLoading({
       type: TYPE_LOADING.APP,
       value: true
     })
+    try {
+      const data = await signUp({
+        account_name: form.account_name,
+        password: form.password
+      })
+      if (data && data.statusCode === StatusCode.SUCCESS) {
+        console.log(data.data);
+      }
+      else
+        throw new Error("Đăng kí thất bại vui lòng thử lại")
 
+    } catch (error: any) {
+      console.log(error);
+    }
+    onLoading({
+      type: TYPE_LOADING.APP,
+      value: false
+    })
   }
 
   if (typeForm === TypeForm.LOGIN)
@@ -75,7 +95,7 @@ const LoginMain = () => {
             <Input autoComplete="off" placeholder='Mã giới thiệu' />
           </Form.Item>
           <Form.Item name='isAccept'>
-            <Checkbox  >Chấp nhận với điều khoản của trò chơi</Checkbox>
+            <Checkbox checked >Chấp nhận với điều khoản của trò chơi</Checkbox>
           </Form.Item>
           <Form.Item>
             <button type='submit' className='button-auth' >

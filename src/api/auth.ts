@@ -25,7 +25,7 @@ export const signin = async (input: DataInput): Promise<RESPONSE_DATA> => {
   return res;
 };
 
-export const getMe = async (): Promise<USER> => {
+export const getMe = async (): Promise<RESPONSE_DATA> => {
   const { data: res } = await requestService.get("/profile/me");
   return res;
 };

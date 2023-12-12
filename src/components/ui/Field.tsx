@@ -5,26 +5,32 @@ import { TYPE_MODAL } from "contants";
 import { useFnOpen } from "hooks/useOpen";
 import { lands } from "types/land";
 import Lock from "components/objects/LockLand";
+import { useAppSelector } from "store";
 
 const Field = () => {
   const { onOpen } = useFnOpen();
+  const { land, user } = useAppSelector((state) => state.user);
+
   return (
     <>
-      {lands.map((item, index) => (
+      {land?.map((item, index) => (
         <Land
           row={item.row}
           column={item.col}
           key={index}
           onClick={() => {
+            if (!item?.status) return;
             onOpen({
               type: TYPE_MODAL.SEEDS,
               value: true,
             });
           }}
         >
-          {index < 4 && <Seed />}
+          {!item?.status && user && user.landNotBuy !== index && <Lock />}
+          {index === user?.landNotBuy && <Mark />}
+          {/* {index < 4 && <Seed />}
           {index === 4 && <Mark />}
-          {index > 4 && <Lock />}
+          {index > 4 && <Lock />} */}
           <div className="havert">
             {/* <img src={havertIcon} /> */}
             {/* <div className="time-end">00:50</div> */}

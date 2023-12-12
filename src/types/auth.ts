@@ -18,6 +18,7 @@ export interface USER {
   game_id: number;
   gold_balance: number;
   money_balance: number;
+  landNotBuy:number;
   name: string;
   _id: string;
 }

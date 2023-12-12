@@ -79,9 +79,10 @@ const LoginMain = () => {
         localStorage.setItem("accessToken", data.data?.tokens.accessToken);
         localStorage.setItem("refreshToken", data.data?.tokens.refreshToken);
         const user = await getMe();
-        if (!user) throw new Error("Đăng nhập thất bại vui lòng thử lại");
-        dispatch(setUser(user));
-        dispatch(setLoginApp(true));
+        if (user.statusCode === StatusCode.SUCCESS) {
+          dispatch(setUser(user.data));
+          dispatch(setLoginApp(true));
+        }
       }
     } catch (error: any) {
       dispatch(

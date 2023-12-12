@@ -3,7 +3,6 @@ import Mark from "components/objects/Mark";
 import Seed from "components/objects/Seed";
 import { TYPE_MODAL } from "contants";
 import { useFnOpen } from "hooks/useOpen";
-import havertIcon from "assets/mipmap-xxxhdpi-v4/home_qipao_1.png";
 import { lands } from "types/land";
 import Lock from "components/objects/LockLand";
 

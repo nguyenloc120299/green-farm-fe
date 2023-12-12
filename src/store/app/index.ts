@@ -1,17 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface TYPE_STATE {
+  isLogin:boolean
   loading: {
     [type: string]: string;
   } | null;
   isOpen: {
     [type: string]: string;
   } | null;
+  message: {
+    isOpen: boolean;
+    title?: string;
+    description?: string;
+    onClick?:()=>void
+  };
 }
 
 const initialState: TYPE_STATE = {
+  isLogin:false,
   loading: {},
   isOpen: {},
+  message: {
+    isOpen: false,
+    title: "",
+    description: "",
+  },
 };
 
 const appSlice = createSlice({
@@ -19,7 +32,7 @@ const appSlice = createSlice({
   initialState,
   reducers: {
     setLoading: (state, action) => {
-       state.loading = {
+      state.loading = {
         ...state.loading,
         [action.payload.type]: action.payload.value,
       };
@@ -30,9 +43,15 @@ const appSlice = createSlice({
         [action.payload.type]: action.payload.value,
       };
     },
+    setMessage: (state, action) => {
+      state.message = action.payload
+    },
+    setLoginApp:(state,action)=>{
+      state.isLogin=action.payload
+    }
   },
 });
 
-export const { setLoading, setOpen } = appSlice.actions;
+export const { setLoading, setOpen,setMessage,setLoginApp } = appSlice.actions;
 
 export default appSlice.reducer;

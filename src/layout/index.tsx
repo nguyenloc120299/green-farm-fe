@@ -1,44 +1,43 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import styled from 'styled-components'
-import bg from 'assets/bg/bg-main.jpg'
-import MainHeader from './MainHeader'
-import MainFooter from './MainFooter'
-import useContentResizer from 'hooks/useContentResizer'
-import SeedsBox from 'components/ui/SeedsBox'
-import Modals from 'components/modal'
-import LoginMain from 'components/ui/LoginMain'
-import Loading from 'components/elements/Loading'
-import BoxNotification from 'components/elements/BoxNotification'
+import { Outlet } from "react-router-dom";
+import styled from "styled-components";
+import bg from "assets/bg/bg-main.jpg";
+import MainHeader from "./MainHeader";
+import MainFooter from "./MainFooter";
+import useContentResizer from "hooks/useContentResizer";
+import SeedsBox from "components/ui/SeedsBox";
+import Modals from "components/modal";
+import LoginMain from "components/ui/LoginMain";
+import Loading from "components/elements/Loading";
+import BoxNotification from "components/elements/BoxNotification";
+import { useAppSelector } from "store";
 const Layout = () => {
-  const height = useContentResizer()
-  const isLogin = false
+  const height = useContentResizer();
+  const isLogin = useAppSelector((state) => state.app.isLogin);
+
   return (
     <LayoutStyle bg={bg} height={height}>
       <Modals />
       <BoxNotification />
       <Loading />
-      <div className='main-page'>
-        {
-          isLogin ?
-            <>
-              <SeedsBox />
-              <MainHeader />
-              <div className='farm'>
-                <Outlet />
-              </div>
-              <MainFooter />
-            </>
-            :
-            <LoginMain />
-        }
-
+      <div className="main-page">
+        {isLogin ? (
+          <>
+            <SeedsBox />
+            <MainHeader />
+            <div className="farm">
+              <Outlet />
+            </div>
+            <MainFooter />
+          </>
+        ) : (
+          <LoginMain />
+        )}
       </div>
     </LayoutStyle>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
 
 const LayoutStyle: any = styled.div`
   width: 100%;
@@ -68,4 +67,4 @@ const LayoutStyle: any = styled.div`
       overflow-y: clip;
     }
   }
-`
+`;

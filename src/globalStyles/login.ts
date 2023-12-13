@@ -35,8 +35,8 @@ export const LoginStyled = styled.div`
           }
         }
         img {
-          width: 80%;
-          height: 80%;
+          width: 60%;
+          height: 60%;
         }
       }
       .form-header-title {
@@ -44,7 +44,7 @@ export const LoginStyled = styled.div`
         justify-content: center;
         align-items: center;
         span.anticon {
-          font-size: 24px;
+          font-size: 20px;
           font-weight: 700;
         }
       }

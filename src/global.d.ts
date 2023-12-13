@@ -21,6 +21,7 @@ declare global {
 
 
 export interface PropsType {
+  status?:boolean
   children?: React.ReactNode;
   column?: number;
   row?: number;

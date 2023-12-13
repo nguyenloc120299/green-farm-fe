@@ -15,6 +15,7 @@ const Field = () => {
     <>
       {land?.map((item, index) => (
         <Land
+          status={item?.status}
           row={item.row}
           column={item.col}
           key={index}

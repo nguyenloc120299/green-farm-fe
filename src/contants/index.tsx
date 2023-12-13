@@ -14,5 +14,6 @@ export const TYPE_MODAL = {
 };
 
 export const TYPE_LOADING = {
-  APP: 'APP'
+  APP: 'APP',
+  LOAD_SCREEN:'LOAD_SCREEN'
 }

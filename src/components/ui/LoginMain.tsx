@@ -111,7 +111,7 @@ const LoginMain = () => {
           <Form.Item name="password">
             <Input
               autoComplete="off"
-              placeholder="Mật khẩu của bạn"
+              placeholder="Nhập mật khẩu"
               type="password"
             />
           </Form.Item>

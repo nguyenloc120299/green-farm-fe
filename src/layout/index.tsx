@@ -9,13 +9,51 @@ import Modals from "components/modal";
 import LoginMain from "components/ui/LoginMain";
 import Loading from "components/elements/Loading";
 import BoxNotification from "components/elements/BoxNotification";
-import { useAppSelector } from "store";
+import { useAppDispatch, useAppSelector } from "store";
+import { getMe } from "api/auth";
+import { StatusCode, getAuhorization } from "api/core";
+import { useEffect } from "react";
+import LoadingScreen from "components/elements/LoadingScreen";
+import { useFnLoading } from "hooks/useLoading";
+import { TYPE_LOADING } from "contants";
+import { setUser } from "store/user";
+import { setLoginApp } from "store/app";
 const Layout = () => {
   const height = useContentResizer();
   const isLogin = useAppSelector((state) => state.app.isLogin);
+  const accessToken = getAuhorization().accessToken;
+  const { user } = useAppSelector((state) => state.user);
+  const { onLoading } = useFnLoading();
+  const dispatch = useAppDispatch()
+  const fetchUser = async () => {
+    onLoading({
+      type: TYPE_LOADING.LOAD_SCREEN,
+      value: true,
+    });
+    try {
+      const result = await getMe();
+      if (result.statusCode === StatusCode.SUCCESS) {
+        dispatch(setUser(result.data));
+        dispatch(setLoginApp(true));
+      }
+    } catch (error) {
+      localStorage.clear();
+    }
+    onLoading({
+      type: TYPE_LOADING.LOAD_SCREEN,
+      value: false,
+    });
+  };
+
+  useEffect(() => {
+    if (accessToken && !user) {
+      fetchUser();
+    }
+  }, []);
 
   return (
     <LayoutStyle bg={bg} height={height}>
+      <LoadingScreen />
       <Modals />
       <BoxNotification />
       <Loading />

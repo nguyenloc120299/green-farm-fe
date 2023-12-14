@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface TYPE_STATE {
-  isLogin:boolean
+  appConfig: {
+    deviceId: string;
+  };
+  isLogin: boolean;
   loading: {
     [type: string]: string;
   } | null;
@@ -12,12 +15,15 @@ export interface TYPE_STATE {
     isOpen: boolean;
     title?: string;
     description?: string;
-    onClick?:()=>void
+    onClick?: () => void;
   };
 }
 
 const initialState: TYPE_STATE = {
-  isLogin:false,
+  appConfig: {
+    deviceId: "",
+  },
+  isLogin: false,
   loading: {},
   isOpen: {},
   message: {
@@ -31,6 +37,9 @@ const appSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
+    setDeviceId: (state, action) => {
+      state.appConfig.deviceId = action.payload;
+    },
     setLoading: (state, action) => {
       state.loading = {
         ...state.loading,
@@ -44,14 +53,15 @@ const appSlice = createSlice({
       };
     },
     setMessage: (state, action) => {
-      state.message = action.payload
+      state.message = action.payload;
     },
-    setLoginApp:(state,action)=>{
-      state.isLogin=action.payload
-    }
+    setLoginApp: (state, action) => {
+      state.isLogin = action.payload;
+    },
   },
 });
 
-export const { setLoading, setOpen,setMessage,setLoginApp } = appSlice.actions;
+export const { setLoading, setOpen, setMessage, setLoginApp,setDeviceId } =
+  appSlice.actions;
 
 export default appSlice.reducer;

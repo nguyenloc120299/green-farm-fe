@@ -1,9 +1,7 @@
 import Land from "components/objects/Land";
 import Mark from "components/objects/Mark";
-import Seed from "components/objects/Seed";
 import { TYPE_MODAL } from "contants";
 import { useFnOpen } from "hooks/useOpen";
-import { lands } from "types/land";
 import Lock from "components/objects/LockLand";
 import { useAppSelector } from "store";
 

@@ -1,10 +1,10 @@
 import requestService from "./request";
 import { RESPONSE_DATA } from "./core";
-import { USER } from "types/auth";
 
 interface DataInput {
   account_name: string;
   password: string;
+  deviceId?: string;
 }
 
 export const signUp = async (input: DataInput): Promise<RESPONSE_DATA> => {

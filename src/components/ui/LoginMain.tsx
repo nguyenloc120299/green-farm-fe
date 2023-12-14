@@ -13,6 +13,7 @@ import { LoginStyled } from "globalStyles/login";
 import { useAppDispatch } from "store";
 import { setLoginApp, setMessage } from "store/app";
 import { setMyLand, setUser } from "store/user";
+import useDevice from "hooks/useDevice";
 enum TypeForm {
   LOGIN = "LOGIN",
   REGISTER = "REGISTER",
@@ -20,6 +21,7 @@ enum TypeForm {
 const LoginMain = () => {
   const [typeForm, setTypeForm] = useState<TypeForm | null>(null);
   const [loading, setLoading] = useState(false);
+  const { deviceId } = useDevice();
   const { onLoading } = useFnLoading();
   const dispatch = useAppDispatch();
 
@@ -37,6 +39,7 @@ const LoginMain = () => {
       const data = await signUp({
         account_name: form.account_name.toLocaleLowerCase(),
         password: form.password,
+        deviceId: deviceId,
       });
       if (data && data.statusCode === StatusCode.SUCCESS) {
         dispatch(

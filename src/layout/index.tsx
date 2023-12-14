@@ -18,32 +18,15 @@ import { useFnLoading } from "hooks/useLoading";
 import { TYPE_LOADING } from "contants";
 import { setUser } from "store/user";
 import { setLoginApp } from "store/app";
+import useDevice from "hooks/useDevice";
+import useApiUser from "api/hook/useApiUser";
 const Layout = () => {
+  useDevice();
   const height = useContentResizer();
   const isLogin = useAppSelector((state) => state.app.isLogin);
   const accessToken = getAuhorization().accessToken;
   const { user } = useAppSelector((state) => state.user);
-  const { onLoading } = useFnLoading();
-  const dispatch = useAppDispatch()
-  const fetchUser = async () => {
-    onLoading({
-      type: TYPE_LOADING.LOAD_SCREEN,
-      value: true,
-    });
-    try {
-      const result = await getMe();
-      if (result.statusCode === StatusCode.SUCCESS) {
-        dispatch(setUser(result.data));
-        dispatch(setLoginApp(true));
-      }
-    } catch (error) {
-      localStorage.clear();
-    }
-    onLoading({
-      type: TYPE_LOADING.LOAD_SCREEN,
-      value: false,
-    });
-  };
+  const { fetchUser } = useApiUser();
 
   useEffect(() => {
     if (accessToken && !user) {

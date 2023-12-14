@@ -10,10 +10,15 @@ export const TYPE_MODAL = {
   TICKETS: "TICKETS",
   DEPOSIT: "DEPOSIT",
   RANKING: "RANKING",
-  UNLOCK_LAND: "UNLOCK_LAND"
+  UNLOCK_LAND: "UNLOCK_LAND",
 };
 
 export const TYPE_LOADING = {
-  APP: 'APP',
-  LOAD_SCREEN:'LOAD_SCREEN'
-}
+  APP: "APP",
+  LOAD_SCREEN: "LOAD_SCREEN",
+  FARM:"FARM"
+};
+
+export const PRICE = {
+  LAND: 400000,
+};

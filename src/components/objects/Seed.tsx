@@ -1,9 +1,13 @@
 import styled from "styled-components";
-import rice from "assets/mipmap-xxxhdpi-v4/home_house_people9.png";
-const Seed = () => {
+
+
+interface Props {
+  imgPlant: string;
+}
+const Seed = ({imgPlant}: Props) => {
   return (
     <SeedStyled>
-      <img src={rice} alt="" />
+      <img src={imgPlant} alt="" />
     </SeedStyled>
   );
 };
@@ -15,7 +19,7 @@ const SeedStyled = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
-  width: 60px;
+  width: 35px;
 
   img {
     width: 100%;

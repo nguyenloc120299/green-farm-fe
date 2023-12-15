@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Category_Land } from "types/land";
 
 declare module 'react-wheel-of-prizes'
 
@@ -21,7 +22,7 @@ declare global {
 
 
 export interface PropsType {
-  status?:boolean
+  status?:Category_Land
   children?: React.ReactNode;
   column?: number;
   row?: number;

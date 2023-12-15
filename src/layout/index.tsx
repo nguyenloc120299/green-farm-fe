@@ -9,15 +9,10 @@ import Modals from "components/modal";
 import LoginMain from "components/ui/LoginMain";
 import Loading from "components/elements/Loading";
 import BoxNotification from "components/elements/BoxNotification";
-import { useAppDispatch, useAppSelector } from "store";
-import { getMe } from "api/auth";
-import { StatusCode, getAuhorization } from "api/core";
+import { useAppSelector } from "store";
+import { getAuhorization } from "api/core";
 import { useEffect } from "react";
 import LoadingScreen from "components/elements/LoadingScreen";
-import { useFnLoading } from "hooks/useLoading";
-import { TYPE_LOADING } from "contants";
-import { setUser } from "store/user";
-import { setLoginApp } from "store/app";
 import useDevice from "hooks/useDevice";
 import useApiUser from "api/hook/useApiUser";
 const Layout = () => {

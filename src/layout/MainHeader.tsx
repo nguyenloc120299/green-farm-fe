@@ -1,68 +1,73 @@
-import styled from 'styled-components'
-import money from 'assets/image/money.png'
-import dollar from 'assets/image/dollar.png'
-import plus from 'assets/mipmap-xxxhdpi-v4/home_add_icon.png'
-import { useFnOpen } from 'hooks/useOpen'
-import { TYPE_MODAL } from 'contants'
-import Avatar from 'components/elements/Avatar'
-import withdraw from "assets/mipmap-xxxhdpi-v4/home_tx_icon.png"
+import styled from "styled-components";
+import money from "assets/image/money.png";
+import dollar from "assets/image/dollar.png";
+import plus from "assets/mipmap-xxxhdpi-v4/home_add_icon.png";
+import { useFnOpen } from "hooks/useOpen";
+import { TYPE_MODAL } from "contants";
+import Avatar from "components/elements/Avatar";
+import withdraw from "assets/mipmap-xxxhdpi-v4/home_tx_icon.png";
+import { useAppSelector } from "store";
+import { formatNumber } from "utils/formatValue";
 const MainHeader = () => {
-  const { onOpen } = useFnOpen()
+  const { onOpen } = useFnOpen();
+  const { user } = useAppSelector((state) => state.user);
   return (
     <MainHeaderStyle>
-      <div className='header'>
-        <div className='left'>
+      <div className="header">
+        <div className="left">
           <div>
             <Avatar
               onHandle={() =>
                 onOpen({
                   type: TYPE_MODAL.PROFILE,
-                  value: true
+                  value: true,
                 })
               }
             />
           </div>
-          <div className='money'>
-            8k
-            <div className='icon'>
-              <img src={money} alt='' />
+          <div className="money">
+            {formatNumber(user?.money_balance || 0)}
+            <div className="icon">
+              <img src={money} alt="" />
             </div>
             <div
-              className='plus'
-              onClick={() => onOpen({
-                type: TYPE_MODAL.WITHDRAW,
-                value: true
-              })}
-            >
-              <img src={withdraw} alt='' />
-            </div>
-          </div>
-        </div>
-        <div className='right'>
-          <div className='coin'>
-            420
-            <div className='dollar'>
-              <img src={dollar} alt='' />
-            </div>
-            <div
-              className='plus'
+              className="plus"
               onClick={() =>
                 onOpen({
-                  type: TYPE_MODAL.DEPOSIT,
-                  value: true
+                  type: TYPE_MODAL.WITHDRAW,
+                  value: true,
                 })
               }
             >
-              <img src={plus} alt='' />
+              <img src={withdraw} alt="" />
+            </div>
+          </div>
+        </div>
+        <div className="right">
+          <div className="coin">
+            {formatNumber(user?.gold_balance || 0)}
+            <div className="dollar">
+              <img src={dollar} alt="" />
+            </div>
+            <div
+              className="plus"
+              onClick={() =>
+                onOpen({
+                  type: TYPE_MODAL.DEPOSIT,
+                  value: true,
+                })
+              }
+            >
+              <img src={plus} alt="" />
             </div>
           </div>
         </div>
       </div>
     </MainHeaderStyle>
-  )
-}
+  );
+};
 
-export default MainHeader
+export default MainHeader;
 const MainHeaderStyle = styled.div`
   position: absolute;
   top: 0;
@@ -153,4 +158,4 @@ const MainHeaderStyle = styled.div`
       }
     }
   }
-`
+`;

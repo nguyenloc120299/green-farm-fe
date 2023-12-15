@@ -1,102 +1,81 @@
-import React, { useRef } from 'react'
-import styled from 'styled-components'
-import carot from 'assets/mipmap-xxxhdpi-v4/home_house_npc9.png'
-import corn from 'assets/mipmap-xxxhdpi-v4/home_house_npc1.png'
-import rice from 'assets/mipmap-xxxhdpi-v4/home_house_npc2.png'
-import { useFnOpen, useOpen } from 'hooks/useOpen'
-import useClickOutSide from 'hooks/useClickOutSide'
-import { TYPE_MODAL } from 'contants'
+import { useRef } from "react";
+import { useFnOpen, useOpen } from "hooks/useOpen";
+import useClickOutSide from "hooks/useClickOutSide";
+import { TYPE_LOADING, TYPE_MODAL, plants } from "contants";
+import { formatNumber } from "utils/formatValue";
+import { SeedBoxStyles } from "globalStyles/land";
+import { useAppDispatch, useAppSelector } from "store";
+import { buyPlant } from "api/user";
+import { StatusCode } from "api/core";
+import { useFnLoading, useLoading } from "hooks/useLoading";
+import { setMessage } from "store/app";
 
 const SeedsBox = () => {
-  const refDisplay = useRef<any>()
-  const { onOpen } = useFnOpen()
-  const isOpen = useOpen(TYPE_MODAL.SEEDS)
+  const refDisplay = useRef<any>();
+  const { onOpen } = useFnOpen();
+  const isOpen = useOpen(TYPE_MODAL.SEEDS);
+  const { landId } = useAppSelector((state) => state.user);
+  const { onLoading } = useFnLoading();
+  const loading = useLoading(TYPE_LOADING.APP);
+  const dispatch = useAppDispatch();
   useClickOutSide(
     refDisplay,
     () =>
       isOpen &&
       onOpen({
         type: TYPE_MODAL.SEEDS,
-        value: false
+        value: false,
       })
-  )
+  );
+
+  const onPlant = async (plant_id: number) => {
+    onLoading({
+      type: TYPE_LOADING.APP,
+      value: true,
+    });
+    try {
+      if (!landId) throw new Error("Không tìm thấy ô đất này");
+      const data = await buyPlant({
+        land_id: landId,
+        plant_id,
+      });
+      if (data.statusCode === StatusCode.SUCCESS) {
+        console.log(data);
+      }
+    } catch (error: any) {
+      dispatch(
+        setMessage({
+          isOpen: true,
+          title: error?.response?.data?.message || error?.message,
+        })
+      );
+    }
+    onLoading({
+      type: TYPE_LOADING.APP,
+      value: false,
+    });
+  };
   return (
     <>
       {isOpen && (
         <SeedBoxStyles ref={refDisplay}>
-          <div className='body'>
-            <div className='seed'>
-              <img src={carot} />
-              <div className='quantity'>100k</div>
-            </div>
-            <div className='seed'>
-              <img src={corn} />
-              <div className='quantity'>50k</div>
-            </div>
-            <div className='seed'>
-              <img src={rice} />
-              <div className='quantity'>20k</div>
-            </div>
+          <div className="body">
+            {plants.map((plant) => (
+              <button
+                className="seed"
+                key={plant.id}
+                onClick={() => onPlant(plant.id)}
+                disabled={loading}
+              >
+                <img src={plant.img} alt={plant.name.translated} />
+                <div className="quantity">{formatNumber(plant.price)}</div>
+              </button>
+            ))}
           </div>
         </SeedBoxStyles>
       )}
     </>
-  )
-}
+  );
+};
 
-export default SeedsBox
-const SeedBoxStyles = styled.div`
-  position: absolute;
-  top: 10%;
-  left: 0;
-  width: 100%;
-  .body {
-    max-width: 300px;
-    width: 100%;
-    margin: auto;
-    height: 80px;
-    background: #c5a275;
-    box-shadow: 2px 3px 0 0 #bbb;
-    border-radius: 10px;
-    transition: all 0.3s ease-in-out;
-    opacity: 1;
-    display: flex;
-    justify-content: start;
-    gap: 10px;
-    align-items: center;
-    padding: 0 10px;
-    .seed {
-      width: 60px;
-      height: 60px;
-      border-radius: 5px;
-      background: #f7dbb6;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 5px;
-      position: relative;
-      cursor: pointer;
-      img {
-        width: 70%;
-        height: 70%;
-      }
-      .quantity {
-        position: absolute;
-        right: -4px;
-        top: -6px;
-        font-size: 10px;
-        font-weight: 700;
-        background: #fff;
-        border-radius: 7px;
-        min-width: 25px;
-        z-index: 99;
-        height: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-weight: 700;
-        color: #9e7741;
-      }
-    }
-  }
-`
+export default SeedsBox;

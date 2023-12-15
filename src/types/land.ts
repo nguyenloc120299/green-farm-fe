@@ -1,3 +1,4 @@
+
 export interface LAND {
   id: number;
   row: number;
@@ -170,3 +171,21 @@ export const lands: LAND[] = [
     col: 11,
   },
 ];
+
+export interface PLANT {
+  id: number;
+  img:string
+  name: {
+    original: string;
+    translated: string;
+  };
+  price: number;
+  harvest_balance: number;
+  time_harvest: number;
+}
+
+export enum Category_Land {
+  PLANTING = "Planting",
+  NO_PLANT = "NO_PLANT",
+  HARVEST = "HARVEST",
+}

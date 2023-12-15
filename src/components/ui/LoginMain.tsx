@@ -5,7 +5,7 @@ import { useState } from "react";
 import btn from "assets/mipmap-xxxhdpi-v4/invitation_tx_button_sel.png";
 import { FORM_LOGIN, FORM_REGISTER } from "types/auth";
 import Loading from "components/elements/Loading";
-import { useFnLoading } from "hooks/useLoading";
+import { useFnLoading, useLoading } from "hooks/useLoading";
 import { TYPE_LOADING } from "contants";
 import { getMe, signUp, signin } from "api/auth";
 import { StatusCode } from "api/core";
@@ -20,7 +20,7 @@ enum TypeForm {
 }
 const LoginMain = () => {
   const [typeForm, setTypeForm] = useState<TypeForm | null>(null);
-  const [loading, setLoading] = useState(false);
+  const loading = useLoading(TYPE_LOADING.APP);
   const { deviceId } = useDevice();
   const { onLoading } = useFnLoading();
   const dispatch = useAppDispatch();
@@ -119,7 +119,7 @@ const LoginMain = () => {
             />
           </Form.Item>
           <Form.Item>
-            <button type="submit" className="button-auth">
+            <button type="submit" className="button-auth" disabled={loading}>
               <img src={btn} style={{ width: "80%" }} />
               <div className="btn-name">
                 <h3>Đăng nhập</h3>
@@ -154,7 +154,7 @@ const LoginMain = () => {
             <Checkbox checked>Chấp nhận với điều khoản của trò chơi</Checkbox>
           </Form.Item>
           <Form.Item>
-            <button type="submit" className="button-auth">
+            <button type="submit" className="button-auth" disabled={loading}>
               <img src={btn} style={{ width: "80%" }} />
               <div className="btn-name">
                 <h3>Đăng Kí</h3>

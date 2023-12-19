@@ -26,6 +26,7 @@ export interface PropsType {
   children?: React.ReactNode;
   column?: number;
   row?: number;
+  landItem?: any
   onClick?:()=>void;
 }
 

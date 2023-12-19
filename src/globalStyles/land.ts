@@ -34,7 +34,7 @@ export const LandStyle = styled.div`
       top: 40%;
       transform: translate(-50%, -50%);
       z-index: 99;
-      color: #fff;
+      color: #000;
     }
 
     img {

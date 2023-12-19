@@ -19,6 +19,7 @@ const Field = () => {
           row={item.row}
           column={item.col}
           key={index}
+          landItem={item}
           onClick={() => {
             if (item?.category === Category_Land.NO_PLANT) {
               onOpen({

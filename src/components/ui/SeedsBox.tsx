@@ -9,12 +9,13 @@ import { buyPlant } from "api/user";
 import { StatusCode } from "api/core";
 import { useFnLoading, useLoading } from "hooks/useLoading";
 import { setMessage } from "store/app";
+import { setMyLand } from "store/user";
 
 const SeedsBox = () => {
   const refDisplay = useRef<any>();
   const { onOpen } = useFnOpen();
   const isOpen = useOpen(TYPE_MODAL.SEEDS);
-  const { landId } = useAppSelector((state) => state.user);
+  const { landId, land } = useAppSelector((state) => state.user);
   const { onLoading } = useFnLoading();
   const loading = useLoading(TYPE_LOADING.APP);
   const dispatch = useAppDispatch();
@@ -39,8 +40,12 @@ const SeedsBox = () => {
         land_id: landId,
         plant_id,
       });
-      if (data.statusCode === StatusCode.SUCCESS) {
-        console.log(data);
+      if (data.statusCode === StatusCode.SUCCESS) {        
+        const newData = land.map((l) =>
+          l?.land_id === data.data?.land_id ? data?.data : l
+        );
+
+        dispatch(setMyLand(newData));
       }
     } catch (error: any) {
       dispatch(

@@ -11,6 +11,7 @@ import { formatNumber } from "utils/formatValue";
 const MainHeader = () => {
   const { onOpen } = useFnOpen();
   const { user } = useAppSelector((state) => state.user);
+
   return (
     <MainHeaderStyle>
       <div className="header">

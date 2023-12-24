@@ -11,13 +11,37 @@ export const LandStyle = styled.div`
     object-fit: cover;
     image-rendering: crisp-edges;
   }
-  .time-havert {
+  .havest-icon {
     position: absolute;
-    bottom: -10px;
+    top: -20px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 999;
     width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .btn-havest {
+      width: 30px;
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .time-havert {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .ant-progress-line {
+      margin-inline-end: 0;
+      margin-bottom: 0;
+    }
     .ant-progress-inner {
       background: #cccc;
       border: 1px solid #fff;
@@ -26,12 +50,13 @@ export const LandStyle = styled.div`
         height: 100% !important;
       }
     }
+
     .time {
       position: absolute;
       font-size: 9px;
       font-weight: 700;
       left: 50%;
-      top: 40%;
+      top: 50%;
       transform: translate(-50%, -50%);
       z-index: 99;
       color: #000;

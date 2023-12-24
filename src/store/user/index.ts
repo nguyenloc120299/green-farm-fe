@@ -30,6 +30,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUser, setMyLand,onSetLandId } = userSlice.actions;
+export const { setUser, setMyLand, onSetLandId } = userSlice.actions;
 
 export default userSlice.reducer;

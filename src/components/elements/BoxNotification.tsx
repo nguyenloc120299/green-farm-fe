@@ -6,34 +6,34 @@ import { useAppDispatch, useAppSelector } from "store";
 import { setMessage } from "store/app";
 
 const BoxNotification = () => {
-  const { isOpen, description, title, onClick } = useAppSelector(
-    (state) => state.app.message
-  );
-  const dispatch = useAppDispatch();
-  return (
-    <>
-      {isOpen && (
-        <BoxNotificationStyled>
-          <div className="body">
-            <h5>{title}</h5>
-            <div className="footer">
-              <div
-                className="btn-ok"
-                onClick={
-                  onClick
-                    ? () => onClick()
-                    : () => dispatch(setMessage({ isOpen: false }))
-                }
-              >
-                <img src={btn} />
-                <div className="title">OK</div>
-              </div>
-            </div>
-          </div>
-        </BoxNotificationStyled>
-      )}
-    </>
-  );
+    const { isOpen, description, title, onClick } = useAppSelector(
+        (state) => state.app.message
+    );
+    const dispatch = useAppDispatch();
+    return (
+        <>
+            {isOpen && (
+                <BoxNotificationStyled>
+                    <div className="body">
+                        <h5>{title}</h5>
+                        <div className="footer">
+                            <div
+                                className="btn-ok"
+                                onClick={
+                                    onClick
+                                        ? () => onClick()
+                                        : () => dispatch(setMessage({ isOpen: false }))
+                                }
+                            >
+                                <img src={btn} />
+                                <div className="title">OK</div>
+                            </div>
+                        </div>
+                    </div>
+                </BoxNotificationStyled>
+            )}
+        </>
+    );
 };
 
 export default BoxNotification;

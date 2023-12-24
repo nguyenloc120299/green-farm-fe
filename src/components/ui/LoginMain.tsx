@@ -91,7 +91,7 @@ const LoginMain = () => {
       dispatch(
         setMessage({
           isOpen: true,
-          title: error?.message,
+          title: error?.response?.data?.message || error?.message,
         })
       );
     }

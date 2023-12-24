@@ -30,14 +30,14 @@ const Field = () => {
             }
           }}
         >
-          {!item?.status  && user && user.landNotBuy !== index && <Lock />}
+          {!item?.status && user && user.landNotBuy !== index && <Lock />}
           {index === user?.landNotBuy && <Mark />}
-         
+
           {
-            item?.category ===Category_Land.PLANTING && 
-            <Seed imgPlant={plants.find(i=>i.id===item?.plant_id)?.img as string}/>
+            item?.category === Category_Land.PLANTING &&
+            <Seed imgPlant={plants.find(i => i.id === item?.plant_id)?.img as string} />
           }
-          
+
         </Land>
       ))}
     </>

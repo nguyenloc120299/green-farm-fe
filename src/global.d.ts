@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Category_Land } from "types/land";
 
-declare module 'react-wheel-of-prizes'
+declare module "react-wheel-of-prizes";
 
 declare global {
   namespace JSX {
@@ -19,15 +19,11 @@ declare global {
   }
 }
 
-
-
 export interface PropsType {
-  status?:Category_Land
+  status?: Category_Land;
   children?: React.ReactNode;
   column?: number;
   row?: number;
-  landItem?: any
-  onClick?:()=>void;
+  landItem?: any;
+  onClick?: () => void;
 }
-
-

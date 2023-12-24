@@ -61,7 +61,7 @@ const ModalUnlockLand = () => {
   return (
     <ModalBase
       onCancel={() =>
-        onOpen({
+        !loading && onOpen({
           type: TYPE_MODAL.UNLOCK_LAND,
           value: false,
         })

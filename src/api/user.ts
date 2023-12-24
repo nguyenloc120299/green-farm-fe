@@ -10,12 +10,24 @@ export const buyLand = async (land_id: number): Promise<RESPONSE_DATA> => {
   return res;
 };
 
-export const buyPlant = async (data: { land_id: number; plant_id: number }): Promise<RESPONSE_DATA> => {
+export const buyPlant = async (data: {
+  land_id: number;
+  plant_id: number;
+}): Promise<RESPONSE_DATA> => {
   const { land_id, plant_id } = data;
   const { data: res } = await requestService.post("/farm/plant", {
     data: {
       land_id,
-      plant_id
+      plant_id,
+    },
+  });
+  return res;
+};
+
+export const havest = async (land_id: number): Promise<RESPONSE_DATA> => {
+  const { data: res } = await requestService.post("/farm/havest", {
+    data: {
+      land_id,
     },
   });
   return res;

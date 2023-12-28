@@ -6,14 +6,15 @@ import useOnClickOutside from "hooks/useClickOutSide";
 import { LandStyle } from "globalStyles/land";
 import { Category_Land } from "types/land";
 import { useCountdown } from "hooks/useCountdown";
-import havestIcon from 'assets/mipmap-xxxhdpi-v4/home_js_coin.png'
+import havestIcon from "assets/mipmap-xxxhdpi-v4/home_js_coin.png";
 import { useAppDispatch, useAppSelector } from "store";
 import { setMessage } from "store/app";
 import { useFnLoading, useLoading } from "hooks/useLoading";
 import { TYPE_LOADING } from "contants";
 import { havest } from "api/user";
 import { StatusCode } from "api/core";
-import { setMyLand, setUser } from "store/user";
+import { setUser } from "store/user";
+import Progressbar from "components/elements/Progressbar";
 
 const Land = ({
   column,
@@ -25,10 +26,10 @@ const Land = ({
 }: PropsType) => {
   const [isShow, setIsShow] = useState(false);
   const ref = useRef<any>();
-  const dispatch = useAppDispatch()
-  const loading = useLoading(TYPE_LOADING.APP)
-  const { land: lands, user } = useAppSelector((state) => state.user)
-  const { onLoading } = useFnLoading()
+  const dispatch = useAppDispatch();
+  const loading = useLoading(TYPE_LOADING.APP);
+  const { land: lands, user } = useAppSelector((state) => state.user);
+  const { onLoading } = useFnLoading();
   useOnClickOutside(ref, () => {
     isShow && setIsShow(false);
   });
@@ -37,27 +38,29 @@ const Land = ({
 
   const havestPlant = async () => {
     try {
-      if (!landItem?.land_id) throw new Error("Không tìm thấy mảnh đất này")
-      if (status === Category_Land.NO_PLANT) throw new Error("Không có cây trồng")
+      if (!landItem?.land_id) throw new Error("Không tìm thấy mảnh đất này");
+      if (status === Category_Land.NO_PLANT)
+        throw new Error("Không có cây trồng");
       onLoading({
         type: TYPE_LOADING.APP,
         value: true,
       });
-      const res = await havest(landItem.land_id)
+      const res = await havest(landItem.land_id);
       if (res.statusCode === StatusCode.SUCCESS) {
-        const { land, user: userData } = res.data
-
+        const { land, user: userData } = res.data;
 
         const newData = lands.map((l: any) =>
           l?.land_id === land?.land_id ? land : l
         );
-        dispatch(setUser({
-          myland: newData,
-          userData: {
-            landNotBuy: user?.landNotBuy, ...userData
-          }
-        }));
-
+        dispatch(
+          setUser({
+            myland: newData,
+            userData: {
+              landNotBuy: user?.landNotBuy,
+              ...userData,
+            },
+          })
+        );
       }
     } catch (error: any) {
       dispatch(
@@ -71,7 +74,7 @@ const Land = ({
       type: TYPE_LOADING.APP,
       value: false,
     });
-  }
+  };
   return (
     <LandStyle
       style={{ gridColumn: column, gridRow: row }}
@@ -88,17 +91,24 @@ const Land = ({
           <div className="time">
             {hours}:{minutes}:{seconds}
           </div>
-          <Progress percent={30} showInfo={false} strokeColor={"#3b9615"} />
+          <Progressbar totalTime={landItem?.time_end - new Date().getTime()} />
         </div>
       )}
-      {isShow && seconds <= 0 && status === Category_Land.PLANTING && (
-        <div className="havest-icon">
-          <button className="btn-havest" onClick={havestPlant} disabled={loading}>
-            <img src={havestIcon} />
-          </button>
-
-        </div>
-      )}
+      {isShow &&
+        seconds <= 0 &&
+        minutes <= 0 &&
+        hours <= 0 &&
+        status === Category_Land.PLANTING && (
+          <div className="havest-icon">
+            <button
+              className="btn-havest"
+              onClick={havestPlant}
+              disabled={loading}
+            >
+              <img src={havestIcon} />
+            </button>
+          </div>
+        )}
     </LandStyle>
   );
 };

@@ -32,3 +32,8 @@ export const havest = async (land_id: number): Promise<RESPONSE_DATA> => {
   });
   return res;
 };
+
+export const getRanking = async (): Promise<RESPONSE_DATA> => {
+  const { data: res } = await requestService.get("/accounts/ranking");
+  return res;
+};

@@ -54,9 +54,9 @@ export const LandStyle = styled.div`
     .time {
       position: absolute;
       font-size: 9px;
-      font-weight: 700;
+      font-weight: 900;
       left: 50%;
-      top: 50%;
+      top: 60%;
       transform: translate(-50%, -50%);
       z-index: 99;
       color: #000;

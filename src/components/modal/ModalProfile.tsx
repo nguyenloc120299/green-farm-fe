@@ -1,20 +1,23 @@
-import { Button, List, Modal } from 'antd'
-import Avatar from 'components/elements/Avatar'
-import { TYPE_MODAL } from 'contants'
-import { useFnOpen, useOpen } from 'hooks/useOpen'
-import money from 'assets/image/money.png'
-import dollar from 'assets/image/dollar.png'
-import friendly from 'assets/image/friendly.png'
-import setting from 'assets/image/gear.png'
-import custom_service from 'assets/image/customer-service.png'
-import about from 'assets/image/info.png'
-import styled from 'styled-components'
-import close from 'assets/mipmap-xxxhdpi-v4/home_dialog_close.png'
-import { RightOutlined } from '@ant-design/icons'
+import { List, Modal } from "antd";
+import Avatar from "components/elements/Avatar";
+import { TYPE_MODAL } from "contants";
+import { useFnOpen, useOpen } from "hooks/useOpen";
+import money from "assets/image/money.png";
+import dollar from "assets/image/dollar.png";
+import friendly from "assets/image/friendly.png";
+import setting from "assets/image/gear.png";
+import custom_service from "assets/image/customer-service.png";
+import about from "assets/image/info.png";
+import styled from "styled-components";
+import close from "assets/mipmap-xxxhdpi-v4/home_dialog_close.png";
+import { RightOutlined } from "@ant-design/icons";
+import { useAppSelector } from "store";
+import { formatNumber } from "utils/formatValue";
 
 const ModalProfile = () => {
-  const isModalOpen = useOpen(TYPE_MODAL.PROFILE)
-  const { onOpen } = useFnOpen()
+  const isModalOpen = useOpen(TYPE_MODAL.PROFILE);
+  const { user } = useAppSelector((state) => state.user);
+  const { onOpen } = useFnOpen();
   return (
     <ModalProfileStyled
       centered
@@ -22,94 +25,90 @@ const ModalProfile = () => {
       onCancel={() =>
         onOpen({
           type: TYPE_MODAL.PROFILE,
-          value: false
+          value: false,
         })
       }
       footer={null}
       width={450}
     >
-      <div className='info-user'>
+      <div className="info-user">
         <Avatar />
         <div>
-          <div className='name'>Loc Nguyen</div>
-          <div className='id_user'>Id: 5803163</div>
+          <div className="name">{user?.name}</div>
+          <div className="id_user">Id: {user?.game_id}</div>
         </div>
       </div>
 
-      <div className='box-money'>
-        <div className='money'>
-          <div className='icon'>
-            <img src={money} alt='' />
+      <div className="box-money">
+        <div className="money">
+          <div className="icon">
+            <img src={money} alt="" />
           </div>
-          8k
+          {formatNumber(user?.gold_balance || 0)}
         </div>
-        <div className='coin'>
-          590
-          <div className='icon'>
+        <div className="coin">
+          {formatNumber(user?.money_balance || 0)}
+          <div className="icon">
             <img src={dollar} />
           </div>
         </div>
       </div>
-      <div className='box-money'>
+      <div className="box-money">
         <List>
           <List.Item>
             <List.Item.Meta
               avatar={<img src={money} />}
-              title={'Chi tiết số dư'}
+              title={"Chi tiết số dư"}
             />
             <RightOutlined />
           </List.Item>
           <List.Item>
             <List.Item.Meta
               avatar={<img src={dollar} />}
-              title={'Chi tiết tiền vàng'}
+              title={"Chi tiết tiền vàng"}
             />
             <RightOutlined />
           </List.Item>
           <List.Item>
             <List.Item.Meta
               avatar={<img src={friendly} />}
-              title={'Lời mời của tôi'}
+              title={"Lời mời của tôi"}
             />
             <RightOutlined />
           </List.Item>
           <List.Item>
             <List.Item.Meta
               avatar={<img src={custom_service} />}
-              title={'Liên hệ CSKH'}
+              title={"Liên hệ CSKH"}
             />
             <RightOutlined />
           </List.Item>
           <List.Item>
             <List.Item.Meta
               avatar={<img src={setting} />}
-              title={'Cài đặt ngôn ngữ'}
+              title={"Cài đặt ngôn ngữ"}
             />
             <RightOutlined />
           </List.Item>
           <List.Item>
             <List.Item.Meta
               avatar={<img src={about} />}
-              title={'Về chúng tôi'}
+              title={"Về chúng tôi"}
             />
             <RightOutlined />
           </List.Item>
         </List>
       </div>
     </ModalProfileStyled>
-  )
-}
+  );
+};
 
-export default ModalProfile
+export default ModalProfile;
 
 const ModalProfileStyled = styled(Modal)`
-  width: 100%;
-  height: 100vh;
-  max-width: 100%;
-
   .ant-modal-close {
-    top: 0px;
-    right: 0px;
+    top: 5px;
+    right: 5px;
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -122,7 +121,7 @@ const ModalProfileStyled = styled(Modal)`
   .ant-modal-content {
     width: 100%;
     height: 100%;
-    border-radius: 0;
+    border-radius: 20px;
     background-color: #9fd7ec;
     padding: 50px 20px;
     .info-user {
@@ -177,4 +176,4 @@ const ModalProfileStyled = styled(Modal)`
       }
     }
   }
-`
+`;

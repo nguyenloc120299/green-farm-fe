@@ -50,7 +50,7 @@ const ModalRanking = () => {
                 <Avatar />
               </div>
               <div className="info-user">
-                <div className="name">{item?.account_name}</div>
+                <div className="name">{item?.name}</div>
                 <div className="balance">
                   <div className="coin">
                     {formatNumber(item?.gold_balance)}

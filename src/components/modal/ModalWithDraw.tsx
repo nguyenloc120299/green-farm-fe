@@ -1,14 +1,19 @@
-import { Button, Modal } from "antd";
+import { Modal } from "antd";
 import { TYPE_MODAL } from "contants";
 import { useFnOpen, useOpen } from "hooks/useOpen";
 import money from "assets/image/money.png";
 import { styled } from "styled-components";
-import close from 'assets/mipmap-xxxhdpi-v4/home_dialog_close.png'
-import withrawIcon from "assets/mipmap-xxxhdpi-v4/withdrawal_button_nor.png"
-import withdrawTypeRight from 'assets/mipmap-xxxhdpi-v4/withdrawal_type_right.png'
+import close from "assets/mipmap-xxxhdpi-v4/home_dialog_close.png";
+import withrawIcon from "assets/mipmap-xxxhdpi-v4/withdrawal_button_nor.png";
+import withdrawTypeRight from "assets/mipmap-xxxhdpi-v4/withdrawal_type_right.png";
+import { useAppSelector } from "store";
+import { formatNumber } from "utils/formatValue";
+import { useMemo } from "react";
 const ModalWithDraw = () => {
   const isModalOpen = useOpen(TYPE_MODAL.WITHDRAW);
+  const { user } = useAppSelector((state) => state.user);
   const { onOpen } = useFnOpen();
+
   return (
     <ModalWithDrawStyled
       centered
@@ -28,23 +33,25 @@ const ModalWithDraw = () => {
           <div className="icon">
             <img src={money} alt="" />
           </div>
-          8k
+          {formatNumber(user?.money_balance || 0)}
         </div>
         <div className="balance-withdraw">
-          <div className="text-1">Rút tiền (1000 điểm)</div>
-          <div className="balance">1000đ</div>
+          <div className="text-1">Rút tiền ({user?.active_point} điểm)</div>
+          <div className="balance">{formatNumber(user?.active_point ?? 0)}đ</div>
           <div className="text-des">
-            Số điểm hoạt động hiện tại của bạn là 1000 điểm với tỉ lệ rút tiền 1:1
+            Số điểm hoạt động hiện tại của bạn là {user?.active_point ?? 0} điểm với tỉ lệ rút tiền
+            1:1
             <span> Tăng điểm</span>
           </div>
         </div>
         <div className="withdrawal-method">
-          <span>
-            Phương thức rút tiền
-          </span>
-          <div className="flex items-center " style={{
-            gap: "10px"
-          }}>
+          <span>Phương thức rút tiền</span>
+          <div
+            className="flex items-center "
+            style={{
+              gap: "10px",
+            }}
+          >
             Momo
             <img src={withdrawTypeRight} width={10} />
           </div>
@@ -54,13 +61,11 @@ const ModalWithDraw = () => {
         <div className="btn-withdraw">
           <img src={withrawIcon} />
           <div className="btn-name">
-            <h3>
-              Rút tất cả
-            </h3>
+            <h3>Rút tất cả</h3>
           </div>
         </div>
       </div>
-      <div className="policy-withdraw">
+      {/* <div className="policy-withdraw">
         <div>Quy tắc rút tiền</div>
         <div>
           <ul>
@@ -74,10 +79,12 @@ const ModalWithDraw = () => {
             </li>
             <li>3. Bạn được rút tối đa 1 lần/ngày</li>
             <li>4. Số tiền rút tối thiểu là 10.000 đ</li>
-            <li>5. Tỉ lệ rút tiền tỉ lệ 1:1 với số điểm hoạt động của bạn hiện có.</li>
+            <li>
+              5. Tỉ lệ rút tiền tỉ lệ 1:1 với số điểm hoạt động của bạn hiện có.
+            </li>
           </ul>
         </div>
-      </div>
+      </div> */}
     </ModalWithDrawStyled>
   );
 };
@@ -86,11 +93,9 @@ export default ModalWithDraw;
 
 const ModalWithDrawStyled = styled(Modal)`
   width: 100%;
-  min-height: 100vh;  
-  max-width: 100%;
- .ant-modal-close {
-    top: 0px;
-    right: 0px;
+  .ant-modal-close {
+    top: 5px;
+    right: 5px;
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -102,35 +107,34 @@ const ModalWithDrawStyled = styled(Modal)`
   }
   .ant-modal-content {
     width: 100%;
-    min-height: 100vh;
-    border-radius: 0;
+    border-radius: 20px;
+    box-shadow: 0 0 3px 0 #000;
     background-color: #9fd7ec;
     padding: 50px 20px;
-    .btn-withdraw{
+    .btn-withdraw {
       position: relative;
       margin-top: -15%;
-      width: 300px;
+      width: 200px;
       display: flex;
       justify-content: center;
       align-items: center;
-      img{
+      img {
         width: 100%;
       }
-      .btn-name{
+      .btn-name {
         position: absolute;
         left: 50%;
-        top:50%;
-        transform: translate(-50%,-50%);
+        top: 50%;
+        transform: translate(-50%, -50%);
         display: flex;
         justify-content: center;
         align-items: center;
-        h3{
+        h3 {
           font-size: 20px;
           font-weight: 700;
           color: #fff;
         }
       }
-        
     }
     .policy-withdraw {
       margin-top: 30px;
@@ -154,14 +158,14 @@ const ModalWithDrawStyled = styled(Modal)`
         background: #d1d776;
         width: 100%;
         border-radius: 10px;
-        border: 2px solid #bbb807;  
+        border: 2px solid #bbb807;
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 10px;
         color: #ec1b1b;
         font-weight: 700;
-        img{
+        img {
           width: 8px;
         }
       }
@@ -191,7 +195,7 @@ const ModalWithDrawStyled = styled(Modal)`
           border-radius: 10px;
           padding: 10px;
           span {
-            color: #ec1b1b  ;
+            color: #ec1b1b;
             font-weight: 700;
             cursor: pointer;
           }

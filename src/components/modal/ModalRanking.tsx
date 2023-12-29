@@ -81,6 +81,9 @@ const BodyStyled: any = styled.div`
     .list {
       display: flex;
       flex-direction: column;
+      max-height: 250px;
+      overflow-y: scroll;
+
       .item {
         height: 70px;
         background-color: #84c3e7;
@@ -142,6 +145,9 @@ const BodyStyled: any = styled.div`
           }
         }
       }
+    }
+    .list::-webkit-scrollbar {
+      display: none;
     }
   }
 `;

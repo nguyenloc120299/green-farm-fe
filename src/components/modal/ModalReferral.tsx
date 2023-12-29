@@ -92,8 +92,8 @@ export default ModalReferral
 
 const ModalReferralStyled = styled(Modal)`
   .ant-modal-close {
-    top: 0px;
-    right: 0px;
+    top: 100px;
+    right: 5px;
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -113,7 +113,9 @@ const ModalReferralStyled = styled(Modal)`
     padding: 10px;
     .header {
       width: 200px;
-      margin: 0 auto -10%;
+      margin: 0 auto -18%;
+      z-index: 999;
+      position: relative;
       img {
         width: 100%;
         height: 100%;

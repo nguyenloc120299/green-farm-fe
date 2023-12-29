@@ -8,6 +8,8 @@ import btnBg from "assets/mipmap-xxxhdpi-v4/time_reward_btn_sel.png";
 import coin from "assets/image/dollar.png";
 import { useEffect, useState } from "react";
 import { getRanking } from "api/user";
+import { StatusCode } from "api/core";
+import { formatNumber } from "utils/formatValue";
 const ModalRanking = () => {
   const isModalOpen = useOpen(TYPE_MODAL.RANKING);
   const { onOpen } = useFnOpen();
@@ -15,9 +17,12 @@ const ModalRanking = () => {
 
   const fetchData = async () => {
     try {
-      const data = await getRanking();
-      console.log("🚀 ~ file: ModalRanking.tsx:19 ~ fetchData ~ data:", data)
-      console.log(data);
+      const res = await getRanking();
+      if (res.statusCode === StatusCode.SUCCESS) {
+        console.log(res.data);
+
+        setRankings(res.data);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -39,66 +44,28 @@ const ModalRanking = () => {
     >
       <BodyStyled className="body" bgLogo={logo_bg}>
         <div className="list">
-          <div className="item">
-            <div>
-              <Avatar />
-            </div>
-            <div className="info-user">
-              <div className="name">User name 1</div>
-              <div className="balance">
-                <div className="coin">
-                  100K
-                  <img src={coin} />
+          {rankings.map((item: any, index: number) => (
+            <div className="item">
+              <div>
+                <Avatar />
+              </div>
+              <div className="info-user">
+                <div className="name">{item?.account_name}</div>
+                <div className="balance">
+                  <div className="coin">
+                    {formatNumber(item?.gold_balance)}
+                    <img src={coin} />
+                  </div>
+                </div>
+              </div>
+              <div className="btn-review">
+                <img src={btnBg} />
+                <div className="btn-name">
+                  <h3>Tham quan</h3>
                 </div>
               </div>
             </div>
-            <div className="btn-review">
-              <img src={btnBg} />
-              <div className="btn-name">
-                <h3>Tham quan</h3>
-              </div>
-            </div>
-          </div>
-          <div className="item">
-            <div>
-              <Avatar />
-            </div>
-            <div className="info-user">
-              <div className="name">User name 1</div>
-              <div className="balance">
-                <div className="coin">
-                  100K
-                  <img src={coin} />
-                </div>
-              </div>
-            </div>
-            <div className="btn-review">
-              <img src={btnBg} />
-              <div className="btn-name">
-                <h3>Tham quan</h3>
-              </div>
-            </div>
-          </div>
-          <div className="item">
-            <div>
-              <Avatar />
-            </div>
-            <div className="info-user">
-              <div className="name">User name 1</div>
-              <div className="balance">
-                <div className="coin">
-                  100K
-                  <img src={coin} />
-                </div>
-              </div>
-            </div>
-            <div className="btn-review">
-              <img src={btnBg} />
-              <div className="btn-name">
-                <h3>Tham quan</h3>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </BodyStyled>
     </ModalBase>

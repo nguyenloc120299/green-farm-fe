@@ -7,7 +7,7 @@ export const LoadindScrenStyled = styled.div`
     background-size: cover;
     background-position: center;
     position: fixed;
-    z-index: 9999;
+    z-index: 99999;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -15,6 +15,8 @@ import { useEffect } from "react";
 import LoadingScreen from "components/elements/LoadingScreen";
 import useDevice from "hooks/useDevice";
 import useApiUser from "api/hook/useApiUser";
+import { useFnLoading } from "hooks/useLoading";
+import { TYPE_LOADING } from "contants";
 const Layout = () => {
   useDevice();
   const height = useContentResizer();
@@ -22,10 +24,15 @@ const Layout = () => {
   const accessToken = getAuhorization().accessToken;
   const { user } = useAppSelector((state) => state.user);
   const { fetchUser } = useApiUser();
-
+  const { onLoading } = useFnLoading();
   useEffect(() => {
     if (accessToken && !user) {
       fetchUser();
+    } else {
+      onLoading({
+        type: TYPE_LOADING.LOAD_SCREEN,
+        value: false,
+      });
     }
   }, []);
 

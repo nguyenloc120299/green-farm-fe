@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import landImg from "assets/farm/farm-area.png";
 import { PropsType } from "global";
-import { Progress } from "antd";
 import useOnClickOutside from "hooks/useClickOutSide";
 import { LandStyle } from "globalStyles/land";
 import { Category_Land } from "types/land";
@@ -75,6 +74,10 @@ const Land = ({
       value: false,
     });
   };
+  const formatTime = (time: number) => {
+    if (time > 9) return time;
+    return "0" + time;
+  };
   return (
     <LandStyle
       style={{ gridColumn: column, gridRow: row }}
@@ -89,7 +92,7 @@ const Land = ({
       {isShow && seconds > 0 && status === Category_Land.PLANTING && (
         <div className="time-havert">
           <div className="time">
-            {hours}:{minutes}:{seconds}
+            {formatTime(hours)}:{formatTime(minutes)}:{formatTime(seconds)}
           </div>
           <Progressbar totalTime={landItem?.time_end - new Date().getTime()} />
         </div>

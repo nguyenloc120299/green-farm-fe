@@ -19,8 +19,6 @@ const ModalRanking = () => {
     try {
       const res = await getRanking();
       if (res.statusCode === StatusCode.SUCCESS) {
-        console.log(res.data);
-
         setRankings(res.data);
       }
     } catch (error) {
@@ -45,7 +43,7 @@ const ModalRanking = () => {
       <BodyStyled className="body" bgLogo={logo_bg}>
         <div className="list">
           {rankings.map((item: any, index: number) => (
-            <div className="item">
+            <div className="item" key={index}>
               <div>
                 <Avatar />
               </div>

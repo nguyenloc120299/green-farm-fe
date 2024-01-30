@@ -6,7 +6,7 @@ export interface TYPE_STATE {
   };
   isLogin: boolean;
   loading: {
-    [type: string]: string;
+    [type: string]: boolean;
   } | null;
   isOpen: {
     [type: string]: string;
@@ -24,7 +24,9 @@ const initialState: TYPE_STATE = {
     deviceId: "",
   },
   isLogin: false,
-  loading: {},
+  loading: {
+    LOAD_SCREEN: true,
+  },
   isOpen: {},
   message: {
     isOpen: false,
@@ -61,7 +63,7 @@ const appSlice = createSlice({
   },
 });
 
-export const { setLoading, setOpen, setMessage, setLoginApp,setDeviceId } =
+export const { setLoading, setOpen, setMessage, setLoginApp, setDeviceId } =
   appSlice.actions;
 
 export default appSlice.reducer;

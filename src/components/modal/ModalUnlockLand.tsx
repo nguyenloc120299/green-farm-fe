@@ -31,13 +31,14 @@ const ModalUnlockLand = () => {
 
       if (user.money_balance < PRICE.LAND)
         throw new Error("Bạn không đủ tiền để mua.");
+      onOpen({
+        type: TYPE_MODAL.UNLOCK_LAND,
+        value: false,
+      });
       const data = await buyLand(user.landNotBuy + 1);
       if (data.statusCode === StatusCode.SUCCESS) {
         await fetchUser(true);
-        onOpen({
-          type: TYPE_MODAL.UNLOCK_LAND,
-          value: false,
-        });
+
         dispatch(
           setMessage({
             isOpen: true,
@@ -61,7 +62,8 @@ const ModalUnlockLand = () => {
   return (
     <ModalBase
       onCancel={() =>
-        !loading && onOpen({
+        !loading &&
+        onOpen({
           type: TYPE_MODAL.UNLOCK_LAND,
           value: false,
         })

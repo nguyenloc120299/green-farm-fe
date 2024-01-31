@@ -98,7 +98,7 @@ export const SeedBoxStyles = styled.div`
       justify-content: center;
       margin-right: 5px;
       position: relative;
-      cursor: pointer;
+      cursor: unset;
       img {
         width: 100%;
       }

@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
-import avt from "assets/mipmap-xxxhdpi-v4/dialog_guide_people.png";
+import avt from "assets/farm/avatar.png";
 interface Type_Props {
   onHandle?: () => void;
 }
@@ -14,13 +14,10 @@ const Avatar = ({ onHandle }: Type_Props) => {
 
 export default Avatar;
 const AvatarStyled = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  padding: 5px;
-  border: 3px solid #fff;
+  width: 50px;
+  height: 50px;
   img {
-    width: 100%;
-    height: 100%;
+    width: 50px;
+    height: 50px;
   }
 `;

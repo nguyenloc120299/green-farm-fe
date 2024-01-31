@@ -75,7 +75,7 @@ export const BoxNotificationStyled = styled.div`
     .btn-ok {
       width: 70px;
       position: relative;
-      cursor: pointer;
+      cursor: unset;
       img {
         width: 100%;
         transform: scale(0.9);

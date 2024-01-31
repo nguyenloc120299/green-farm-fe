@@ -24,7 +24,7 @@ const ButtonImage = ({ bgImg, width, height, title = '', onEvent }: Props) => {
 export default ButtonImage
 
 const ButtonStyled = styled.div<{ width?: number; height?: number }>`
-    cursor: pointer;
+    cursor: unset;
     width: ${(props) => `${props.width}px` || '100%'};
     height: ${(props) => `${props.height}px` || '100%'};
     position: relative;

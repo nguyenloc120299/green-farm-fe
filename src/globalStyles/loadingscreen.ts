@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import bg from 'assets/mipmap-xxxhdpi-v4/home_image_bg.9.png'
+import bg from 'assets/farm/bg-mainmenu.png'
 export const LoadindScrenStyled = styled.div`
     width: 100%;
     height: 100vh;

@@ -77,7 +77,7 @@ const MainFooterStyle = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
-  cursor: pointer;
+  cursor: unset;
   .footer {
     padding: 10px 15px;
     display: flex;
@@ -106,6 +106,7 @@ const MainFooterStyle = styled.div`
         .text {
           font-size: 12px;
           font-weight: 700;
+        
         }
       }
     }

@@ -1,5 +1,5 @@
 import { LoadindScrenStyled } from "globalStyles/loadingscreen";
-import img1 from "assets/mipmap-xxxhdpi-v4/dialog_guide_people.png";
+import img1 from "assets/farm/avatar.png";
 import { useLoading } from "hooks/useLoading";
 import { TYPE_LOADING } from "contants";
 

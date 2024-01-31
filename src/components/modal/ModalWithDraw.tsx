@@ -197,7 +197,7 @@ const ModalWithDrawStyled = styled(Modal)`
           span {
             color: #ec1b1b;
             font-weight: 700;
-            cursor: pointer;
+            cursor:unset ;
           }
         }
       }

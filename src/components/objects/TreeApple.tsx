@@ -1,5 +1,5 @@
 import React from 'react'
-import treeImg from 'assets/farm/tree-001.png'
+import treeImg from 'assets/farm/harvested_tree.png'
 import styled from 'styled-components'
 import { PropsType } from 'global'
 import Lock from './LockLand'
@@ -28,7 +28,7 @@ const TreeStyle: any = styled.div`
     transform: translate(-50%, -50%);
 
     img {
-      transform: scale(1.8);
+      transform: scale(2.4);
       object-fit: cover;
       image-rendering: crisp-edges;
       image-rendering: pixelated;

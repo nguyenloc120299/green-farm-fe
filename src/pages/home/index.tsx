@@ -5,10 +5,10 @@ const Home = () => {
   return (
     <>
       <Field />
-      <Tree row={15} column={3} />
-      <Tree row={15} column={5} />
-      <Tree row={15} column={8} />
-      <Tree row={15} column={10} />
+      <Tree row={14} column={2} />
+      <Tree row={14} column={5} />
+      <Tree row={14} column={8} />
+      <Tree row={14} column={11} />
     </>
   );
 };
